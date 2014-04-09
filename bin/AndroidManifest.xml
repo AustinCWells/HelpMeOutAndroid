@@ -4,10 +4,12 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="19" />
-
+	
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -41,6 +43,10 @@
         <activity
             android:name="com.example.helpmeout.JobsDisplay"
             android:label="@string/title_activity_jobs_display" >
+        </activity>
+        <activity
+            android:name="com.example.helpmeout.SignUp"
+            android:label="@string/title_activity_sign_up" >
         </activity>
     </application>
 

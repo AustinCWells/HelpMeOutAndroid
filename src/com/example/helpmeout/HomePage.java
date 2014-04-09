@@ -14,11 +14,20 @@ public class HomePage extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_page);
-		Button mPostJob, mGetJob, mProfile, mMyJobs;
+		Button mPostJob, mGetJob, mProfile, mMyJobs, mSignOut;
 		mMyJobs = (Button) findViewById(R.id.myJobsButton);
 		mGetJob = (Button) findViewById(R.id.getJobButton);
 		mPostJob = (Button) findViewById(R.id.postJobButton);
 		mProfile = (Button) findViewById(R.id.profileButton);
+		mSignOut = (Button) findViewById(R.id.signOutButton);
+		mSignOut.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				toMainPage();
+				
+			}
+		});
 		mMyJobs.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -52,6 +61,10 @@ public class HomePage extends ActionBarActivity {
 			}
 		});
 
+	}
+	private void toMainPage(){
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent); 
 	}
 	
 	private void toMyJobs(){

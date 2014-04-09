@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    android:id ="@+id/parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="15dp" >
@@ -13,6 +15,30 @@
         android:layout_centerHorizontal="true"
         android:background="#000" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/anchor"
+        android:text="button1" />
     
+    
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/anchor" 
+        android:text="button2"/>
+    
+    <View
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="100dip"
+        android:layout_alignRight="@+id/anchor"
+        android:layout_below="@id/button1"
+        android:background="#F00"
+        android:text="button2" />
 
 </RelativeLayout>
