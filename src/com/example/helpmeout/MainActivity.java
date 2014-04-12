@@ -1,22 +1,26 @@
 package com.example.helpmeout;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
+import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,9 +60,9 @@ public class MainActivity extends ActionBarActivity{
 
 	public void toHomePage(){
 		// define variables for tests
-		Context context = getApplicationContext();
-		int duration = Toast.LENGTH_SHORT;
-		Toast toast;
+//		Context context = getApplicationContext();
+//		int duration = Toast.LENGTH_SHORT;
+//		Toast toast;
 
 		
 		EditText emailView = (EditText) findViewById(R.id.email);
@@ -80,34 +84,92 @@ public class MainActivity extends ActionBarActivity{
 			return; 
 		}
 		
-		// Send a HttpPost Request
-		 HttpClient httpclient = new DefaultHttpClient();
-		 HttpPost httppost = new HttpPost("www.google.com");
-		 
-	 try {
-		        // Add your data
-		        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-		        nameValuePairs.add(new BasicNameValuePair("email", email.toString()));
-		        nameValuePairs.add(new BasicNameValuePair("password", password.toString()));
-		        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+	    new LoginUserTask().execute("http://107.170.79.251/HelpMeOut/api/login");
 
-		        // Execute HTTP Post Request
-		        HttpResponse response = httpclient.execute(httppost);
-		        toast = Toast.makeText(context, response.toString(), duration);
-		        toast.show();
-		      
-		    } catch (ClientProtocolException e) {
-		        // TODO Auto-generated catch block
-		   } catch (IOException e) {
-		        // TODO Auto-generated catch block
-		   }
-	 
-		 
 		
+	
+
 		//display toast for building
 		
 		//Intent intent = new Intent(this, HomePage.class ); 
 		//startActivity(intent); 
+	}
+	
+	private class LoginUserTask extends AsyncTask<String, Void, String> {
+	    /** The system calls this to perform work in a worker thread and
+	      * delivers it the parameters given to AsyncTask.execute() */
+	    protected String doInBackground(String... urls) {
+	        return logInUser(urls[0]);
+	    }
+	    
+	    /** The system calls this to perform work in the UI thread and delivers
+	      * the result from doInBackground() */
+	    protected void onPostExecute(String result) {
+	    	Log.i("THREAD","Thread executed"); 
+	    	Context context = getApplicationContext();
+			int duration = Toast.LENGTH_SHORT;
+			Toast toast;   
+	    	toast = Toast.makeText(context, result, duration);
+		    toast.show();
+	    }
+	    
+	    private String logInUser(String url){
+	   
+	    	EditText emailView = (EditText) findViewById(R.id.email);
+			EditText passwordView = (EditText) findViewById(R.id.password);
+			CharSequence email = emailView.getText();
+			CharSequence password = passwordView.getText();
+			
+	    	Context context = getApplicationContext();
+			int duration = Toast.LENGTH_SHORT;
+			Toast toast;
+	    	// Send a HttpPost Request
+			 HttpClient httpclient = new DefaultHttpClient();
+			 HttpPost httppost = new HttpPost(url);
+			 HttpResponse response = null;
+			 HttpEntity entity = null;
+			 JSONObject json = new JSONObject(); 
+		 try {
+			        // Add your data
+//			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+//			        nameValuePairs.add(new BasicNameValuePair("email", email.toString()));
+//			        nameValuePairs.add(new BasicNameValuePair("password", password.toString()));
+//			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			 		json.put("email", email.toString());
+			 		json.put("password", password.toString());
+			 		StringEntity se = new StringEntity( json.toString()); 
+			 		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+			 		httppost.setEntity(se); 
+
+			        // Execute HTTP Post Request
+			        response = httpclient.execute(httppost);
+			        entity = response.getEntity();
+
+
+			      
+			    } catch (ClientProtocolException e) {
+			        // TODO Auto-generated catch block
+			   } catch (IOException e) {
+			        // TODO Auto-generated catch block
+			   } catch (Exception e){
+				   Log.e("MAIN_ACTIVITY", "exception thrown", e);
+				   toast = Toast.makeText(context, e.toString(), duration);
+			       toast.show();
+			   }
+		 	if(null != entity){
+		 		try {
+					return EntityUtils.toString(entity);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		 	}
+		 	return "get failed"; 
+	    }
+	   
 	}
 
 	@Override
@@ -129,6 +191,10 @@ public class MainActivity extends ActionBarActivity{
 		}
 		return super.onOptionsItemSelected(item);
 	}
+
+
+
+		
 
 
 
