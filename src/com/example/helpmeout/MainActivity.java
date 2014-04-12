@@ -13,7 +13,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import android.content.Context;
 import android.content.Intent;
@@ -48,7 +50,7 @@ public class MainActivity extends ActionBarActivity{
 			
 			@Override
 			public void onClick(View v) {
-				toHomePage(); 
+				commenceLoginProcess(); 
 				
 			}
 		});
@@ -58,13 +60,15 @@ public class MainActivity extends ActionBarActivity{
 		startActivity(intent); 
 	}
 
-	public void toHomePage(){
-		// define variables for tests
-//		Context context = getApplicationContext();
-//		int duration = Toast.LENGTH_SHORT;
-//		Toast toast;
-
-		
+	public void commenceLoginProcess(){
+		boolean loginInfoIsValid = isLoginInfoValid(); 
+		if(loginInfoIsValid){
+			 new LoginUserTask().execute("http://107.170.79.251/HelpMeOut/api/login");
+		}
+		return; 
+	}
+	
+	private boolean isLoginInfoValid(){
 		EditText emailView = (EditText) findViewById(R.id.email);
 		EditText passwordView = (EditText) findViewById(R.id.password);
 		CharSequence email = emailView.getText();
@@ -80,19 +84,11 @@ public class MainActivity extends ActionBarActivity{
 			passwordView.setError( "Password format must be between 8 and 25 characters." );
 			setError = true; 
 		}
-		if(setError){
-			return; 
+		if(setError)
+		{
+			return false; 
 		}
-		
-	    new LoginUserTask().execute("http://107.170.79.251/HelpMeOut/api/login");
-
-		
-	
-
-		//display toast for building
-		
-		//Intent intent = new Intent(this, HomePage.class ); 
-		//startActivity(intent); 
+		return true;
 	}
 	
 	private class LoginUserTask extends AsyncTask<String, Void, String> {
@@ -104,13 +100,56 @@ public class MainActivity extends ActionBarActivity{
 	    
 	    /** The system calls this to perform work in the UI thread and delivers
 	      * the result from doInBackground() */
-	    protected void onPostExecute(String result) {
+	    protected void onPostExecute(String loginResult) {
+	    	boolean loginIsSuccess = checkIfLoginIsSuccess(loginResult); 
+	    	if (loginIsSuccess){
+	    		String userId = getUserId(loginResult); 
+	    		toHomePage(userId); 
+	    	}
 	    	Log.i("THREAD","Thread executed"); 
 	    	Context context = getApplicationContext();
 			int duration = Toast.LENGTH_SHORT;
 			Toast toast;   
-	    	toast = Toast.makeText(context, result, duration);
+	    	toast = Toast.makeText(context, loginResult, duration);
 		    toast.show();
+	    }
+	    
+	    private boolean checkIfLoginIsSuccess(String loginResult){
+	    	JSONObject object;
+	    	String query = null; 
+	    	try {
+				object = (JSONObject) new JSONTokener(loginResult).nextValue();
+				query = object.getString("userID");
+
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	Log.i("JSON RETURNED",query);
+	    	if(query.equalsIgnoreCase("0")){
+	    		return false; 
+	    	}
+	    	return true; 
+	    }
+	    
+	    private String getUserId(String loginResult){
+	    	JSONObject object;
+	    	String query = null; 
+	    	try {
+				object = (JSONObject) new JSONTokener(loginResult).nextValue();
+				query = object.getString("userID");
+
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	return query;
+	    }
+	    
+	    private void toHomePage(String userID){
+			Intent intent = new Intent(MainActivity.this, HomePage.class);
+			intent.putExtra("user_id", userID); 
+			startActivity(intent); 
 	    }
 	    
 	    private String logInUser(String url){
@@ -130,11 +169,7 @@ public class MainActivity extends ActionBarActivity{
 			 HttpEntity entity = null;
 			 JSONObject json = new JSONObject(); 
 		 try {
-			        // Add your data
-//			        List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-//			        nameValuePairs.add(new BasicNameValuePair("email", email.toString()));
-//			        nameValuePairs.add(new BasicNameValuePair("password", password.toString()));
-//			        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			        // Add data
 			 		json.put("email", email.toString());
 			 		json.put("password", password.toString());
 			 		StringEntity se = new StringEntity( json.toString()); 
@@ -158,7 +193,8 @@ public class MainActivity extends ActionBarActivity{
 			   }
 		 	if(null != entity){
 		 		try {
-					return EntityUtils.toString(entity);
+		 			 
+		 			 return EntityUtils.toString(entity);
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

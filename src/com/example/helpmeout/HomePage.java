@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class HomePage extends ActionBarActivity {
 
@@ -15,11 +16,19 @@ public class HomePage extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_page);
 		Button mPostJob, mGetJob, mProfile, mMyJobs, mSignOut;
+		TextView mUserName; 
 		mMyJobs = (Button) findViewById(R.id.myJobsButton);
 		mGetJob = (Button) findViewById(R.id.getJobButton);
 		mPostJob = (Button) findViewById(R.id.postJobButton);
 		mProfile = (Button) findViewById(R.id.profileButton);
 		mSignOut = (Button) findViewById(R.id.signOutButton);
+		mUserName = (TextView) findViewById(R.id.name);
+		
+		Intent i = getIntent();
+		String id = i.getStringExtra("user_id");
+		mUserName.setText(id); 
+
+		
 		mSignOut.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
