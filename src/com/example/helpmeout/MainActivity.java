@@ -63,6 +63,7 @@ public class MainActivity extends ActionBarActivity{
 	public void commenceLoginProcess(){
 		boolean loginInfoIsValid = isLoginInfoValid(); 
 		if(loginInfoIsValid){
+			Log.i("ACW","Loggin in"); 
 			 new LoginUserTask().execute("http://107.170.79.251/HelpMeOut/api/login");
 		}
 		return; 
@@ -105,13 +106,15 @@ public class MainActivity extends ActionBarActivity{
 	    	if (loginIsSuccess){
 	    		String userId = getUserId(loginResult); 
 	    		toHomePage(userId); 
+	    	} else {
+	    		Context context = getApplicationContext();
+				int duration = Toast.LENGTH_LONG;
+				Toast toast;   
+		    	toast = Toast.makeText(context, "Login information incorrect", duration);
+			    toast.show();
 	    	}
 	    	Log.i("THREAD","Thread executed"); 
-	    	Context context = getApplicationContext();
-			int duration = Toast.LENGTH_SHORT;
-			Toast toast;   
-	    	toast = Toast.makeText(context, loginResult, duration);
-		    toast.show();
+	    	
 	    }
 	    
 	    private boolean checkIfLoginIsSuccess(String loginResult){
@@ -179,6 +182,7 @@ public class MainActivity extends ActionBarActivity{
 			        // Execute HTTP Post Request
 			        response = httpclient.execute(httppost);
 			        entity = response.getEntity();
+			        
 
 
 			      
@@ -196,13 +200,17 @@ public class MainActivity extends ActionBarActivity{
 		 			 
 		 			 return EntityUtils.toString(entity);
 				} catch (ParseException e) {
+					Log.i("ACW","MainActivity. Line 202. JSON Parse Exception");
+					
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
+					Log.i("ACW","MainActivity. Lin 207. IOException"); 
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 		 	}
+		 	Log.i("ACW","MainActivity. Line 212. Request not parsed correctly"); 
 		 	return "get failed"; 
 	    }
 	   
