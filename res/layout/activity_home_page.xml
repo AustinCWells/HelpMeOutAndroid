@@ -35,25 +35,25 @@
 		    android:id="@+id/name"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:text= "@string/name"
+		    android:text= "@string/loading"
 		    android:layout_marginLeft= "30dip"/>
 	        <TextView 
-		    android:id="@+id/stats1"
+		    android:id="@+id/tokens"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:text= "@string/jobsComplete"
+		    android:text= "@string/loading"
 		    android:layout_marginLeft= "30dip"/>
 	        <TextView 
-		    android:id="@+id/stats2"
+		    android:id="@+id/email"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:text= "@string/currentJobs"
+		    android:text= "@string/loading"
 		    android:layout_marginLeft= "30dip"/>
 	        <TextView 
 		    android:id="@+id/stats3"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:text= "@string/rank"
+		    android:text= "@string/loading"
 		    android:layout_marginLeft= "30dip"/>
 	   </LinearLayout>
     </LinearLayout>

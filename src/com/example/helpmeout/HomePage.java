@@ -1,11 +1,7 @@
 package com.example.helpmeout;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Scanner;
 
 import org.apache.http.HttpEntity;
@@ -13,7 +9,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -22,18 +17,8 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
-
-
-
-
-
-
-
-
-
-
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -43,9 +28,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class HomePage extends ActionBarActivity {
 
@@ -206,7 +189,8 @@ public class HomePage extends ActionBarActivity {
 	      * the result from doInBackground() */
 	    protected void onPostExecute(String userInformation) {
 	    	// #TODO 
-	    	Log.i("ACW", "Infor returned: " + userInformation); 
+	    	Log.i("ACW", "Info returned: " + userInformation); 
+	    	
 	    	updateUserInformation(userInformation); 
 	    	
 	    	return;
@@ -214,6 +198,30 @@ public class HomePage extends ActionBarActivity {
 	    }
 	    
 	    private void updateUserInformation(String userInformation){
+	    	
+	    	JSONObject object;
+			try {
+				object = (JSONObject) new JSONTokener(userInformation).nextValue();
+				String fName = object.getString("first_name");
+				String lName = object.getString("last_name");
+				String tokens = object.getString("tokens"); 
+				String email = object.getString("email"); 
+				
+				TextView nameView = (TextView) findViewById(R.id.name);
+				TextView tokensView = (TextView) findViewById(R.id.tokens);
+				TextView emailView = (TextView) findViewById(R.id.email);
+				
+				nameView.setText("Name: " + fName + " " + lName);
+				tokensView.setText("Tokens: " + tokens);
+				emailView.setText("Email: " + email); 
+				// #TODO update with rating info not user info 
+				
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
 	    	return;
 	    }
 	    
