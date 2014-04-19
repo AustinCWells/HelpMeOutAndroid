@@ -1,12 +1,27 @@
 package com.example.helpmeout;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.ParseException;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -14,15 +29,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class JobsAvailable extends ActionBarActivity {
-	JSONObject mJobsAvailable; 
-	ArrayList<Job> mJobs; 
+	public static JSONObject mJobsAvailable; 
+	public static ArrayList<Job> mJobs; 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_jobs_available);
-		mJobsAvailable = getJSONforTest(); 
+		new getJobsTask().execute("http://107.170.79.251/HelpMeOut/api/tasks");
+		//mJobsAvailable = getJSONforTest(); 
 		mJobs = new ArrayList<Job>(); 
 		//get buttons for all jobs
 		Button allJobs = (Button) findViewById(R.id.allJobsButton);
@@ -49,8 +66,8 @@ public class JobsAvailable extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
-				//get a specific category and fill the jobs array
-				JSONtoJobs(getCategoryJobs("laundry")); 
+				
+				loadJobs(getCategoryJobs("laundry")); 
 				
 			}
 		});
@@ -101,17 +118,17 @@ public class JobsAvailable extends ActionBarActivity {
 		}
 		return object; 
 	}
-	private void JSONtoJobs(JSONArray jobs){
+	private void loadJobs(JSONArray jobs){
 		if(jobs != null){
 			try{
 				Log.i("ACW","Jobs in array: " + jobs.length());
 				for(int i = 0; i < jobs.length(); i++) {
 					JSONObject currentJob = jobs.getJSONObject(i);
 					Integer task_id = currentJob.getInt("task_id");
-					String fName = currentJob.getString("fName");
-					String lName = currentJob.getString("lName");
+					String fName = currentJob.getString("first_name");
+					String lName = currentJob.getString("last_name");
 					String short_description = currentJob.getString("short_description"); 
-					String note = currentJob.getString("note");
+					String note = currentJob.getString("notes");
 					Integer price = currentJob.getInt("price"); 
 					String time_frame_date = currentJob.getString("time_frame_date");
 					String time_frame_time = currentJob.getString("time_frame_time");
@@ -129,6 +146,57 @@ public class JobsAvailable extends ActionBarActivity {
 			Log.i("ACW", "JSON OBJECT NULL: Line 105");
 		}
 	}
+	
+	private class getJobsTask extends AsyncTask<String, Void, String> {
+	    /** The system calls this to perform work in a worker thread and
+	      * delivers it the parameters given to AsyncTask.execute() */
+	    @Override
+		protected String doInBackground(String... urls) {		
+	    	HttpClient httpclient = new DefaultHttpClient();
+			HttpGet httppost = new HttpGet(urls[0]);
+			HttpResponse response = null;
+			HttpEntity entity = null;
+			try {
+				// Execute HTTP Post Request
+				response = httpclient.execute(httppost);
+				entity = response.getEntity();
+			} catch (ClientProtocolException e) {
+			} catch (IOException e) {
+			} catch (Exception e) {
+				Log.e("ACW", "HomePage. Line 188, Exception e: " + e);
+			}
+			if (null != entity) {
+				try {
+					return EntityUtils.toString(entity);
+				} catch (ParseException e) {
+					Log.i("ACW", "MainActivity. Line 202. JSON Parse Exception");
+					e.printStackTrace();
+				} catch (IOException e) {
+					Log.i("ACW", "MainActivity. Lin 207. IOException");
+					e.printStackTrace();
+				}
+			}
+			Log.i("ACW", "MainActivity. Line 212. Request not parsed correctly");
+			return "get failed";		   
+	    }
+	    
+	    /** The system calls this to perform work in the UI thread and delivers
+	      * the result from doInBackground() */
+	    protected void onPostExecute(String userInformation) {
+	    	// #TODO 
+	    	Log.i("ACW", "Info returned: " + userInformation);
+	    	try {
+				mJobsAvailable = (JSONObject) new JSONTokener(userInformation).nextValue();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	return;
+	    	
+	    }
+	}
+	
+
 	
 	public class Job{
 		Integer task_id;

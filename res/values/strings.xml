@@ -4,7 +4,6 @@
     <string name="app_name">HelpMeOut</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
     <string name="header">Help Me Out</string>
     <string name="signUpText">Sign Up</string>
     <string name="loginText">Login</string>
@@ -66,7 +65,6 @@
         <item>YES!</item>
         <item>NO!</item>
     </string-array>
-    
     <string-array name="gender_array">
         <item>Male</item>
         <item>Female</item>
@@ -99,8 +97,10 @@
     <string name="emailHint">Email</string>
     <string name="passwordHint">Password</string>
     <string name="backText">Back</string>
-	<string name="signoutText">Sign Out</string>
-	<string name="not_available">N/A</string>
-	<string name="loading">Loading...</string>
+    <string name="signoutText">Sign Out</string>
+    <string name="not_available">N/A</string>
+    <string name="loading">Loading...</string>
+    <string name="title_activity_all_jobs">AllJobs</string>
+    <string name="offerHelp">offer help</string>
 
 </resources>
