@@ -28,19 +28,20 @@ import android.view.View;
 import android.widget.Button;
 
 public class JobsAvailable extends ActionBarActivity {
-	public static JSONObject mJobsAvailable; 
-	public static ArrayList<Job> mJobs; 
+	public static JSONObject mJobsAvailable;
+	public static ArrayList<Job> mJobs;
 	private Context mContext;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_jobs_available);
-	
+
 		new getJobsTask().execute("http://107.170.79.251/HelpMeOut/api/tasks");
-		//mJobsAvailable = getJSONforTest(); 
-		mContext = this; 
-		mJobs = new ArrayList<Job>(); 
-		//get buttons for all jobs
+		// mJobsAvailable = getJSONforTest();
+		mContext = this;
+		mJobs = new ArrayList<Job>();
+		// get buttons for all jobs
 		Button allJobs = (Button) findViewById(R.id.allJobsButton);
 		Button foodJobs = (Button) findViewById(R.id.foodJobsButton);
 		Button laundryJobs = (Button) findViewById(R.id.laundryJobsButton);
@@ -50,93 +51,92 @@ public class JobsAvailable extends ActionBarActivity {
 		Button techJobs = (Button) findViewById(R.id.techSupportJobsButton);
 		Button maintenanceJobs = (Button) findViewById(R.id.maintenanceJobsButton);
 		Button otherJobs = (Button) findViewById(R.id.otherJobsButton);
-		
+
 		// set click listeners for all jobs
-otherJobs.setOnClickListener(new View.OnClickListener() {
-			
+		otherJobs.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
-				loadJobs(getCategoryJobs("other")); 
-				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				loadJobs(getCategoryJobs("other"));
+				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
 		});
-maintenanceJobs.setOnClickListener(new View.OnClickListener() {
-	
-	@Override
-	public void onClick(View v) {
-		loadJobs(getCategoryJobs("maintenance")); 
-		Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
-		startActivity(intent);
-	}
-});
-techJobs.setOnClickListener(new View.OnClickListener() {
-			
+		maintenanceJobs.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
-				loadJobs(getCategoryJobs("techSupport")); 
-				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				loadJobs(getCategoryJobs("maintenance"));
+				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
 		});
-rideJobs.setOnClickListener(new View.OnClickListener() {
-			
+		techJobs.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
-				loadJobs(getCategoryJobs("rides")); 
-				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				loadJobs(getCategoryJobs("techSupport"));
+				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
 		});
-cleaningJobs.setOnClickListener(new View.OnClickListener() {
-			
+		rideJobs.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
-				loadJobs(getCategoryJobs("cleaning")); 
-				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				loadJobs(getCategoryJobs("rides"));
+				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
 		});
-groceryJobs.setOnClickListener(new View.OnClickListener() {
-			
+		cleaningJobs.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
-				loadJobs(getCategoryJobs("groceries")); 
-				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				loadJobs(getCategoryJobs("cleaning"));
+				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
+				startActivity(intent);
+			}
+		});
+		groceryJobs.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				loadJobs(getCategoryJobs("groceries"));
+				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
 		});
 		laundryJobs.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				loadJobs(getCategoryJobs("laundry")); 
-				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				loadJobs(getCategoryJobs("laundry"));
+				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
 		});
 		foodJobs.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				loadJobs(getCategoryJobs("foodDelivery")); 
-				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				loadJobs(getCategoryJobs("foodDelivery"));
+				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
 		});
 		allJobs.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				
-				Log.i("ACW","Data to be sent to list view: " + mJobsAvailable.toString()); 
-				
+
+				Log.i("ACW",
+						"Data to be sent to list view: "
+								+ mJobsAvailable.toString());
+
 			}
 		});
-		
-		
-		
-		
+
 	}
 
 	@Override
@@ -158,65 +158,75 @@ groceryJobs.setOnClickListener(new View.OnClickListener() {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-	private JSONArray getCategoryJobs(String categoryName){
+
+	private JSONArray getCategoryJobs(String categoryName) {
 		try {
 			return mJobsAvailable.getJSONArray(categoryName);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return null; 
+		return null;
 	}
-	
-	private JSONObject getJSONforTest(){
-		JSONObject object = new JSONObject(); 
-		try{
+
+	private JSONObject getJSONforTest() {
+		JSONObject object = new JSONObject();
+		try {
 			String json = "{\"laundry\":[{\"task_id\":1,\"fName\":\"austin\",\"lName\":\"wells\",\"short_description\":\"Thisisadescription\",\"note\":\"Hereisanote\",\"price\":5,\"time_frame_date\":\"12/23/34\",\"time_frame_time\":\"1:23\",\"location\":\"MyLocation\"},{\"task_id\":2,\"fName\":\"John\",\"lName\":\"Smith\",\"short_description\":\"Thisisadescription2\",\"note\":\"Hereisanote2\",\"price\":6,\"time_frame_date\":\"12/23/35\",\"time_frame_time\":\"1:25\",\"location\":\"MyLocation2\"}],\"food\":[{\"task_id\":3,\"fName\":\"bob\",\"lName\":\"wells\",\"short_description\":\"Thisisadescription\",\"note\":\"Hereisanote\",\"price\":5,\"time_frame_date\":\"12/23/34\",\"time_frame_time\":\"1:23\",\"location\":\"MyLocation\"},{\"task_id\":4,\"fName\":\"harly\",\"lName\":\"Smith\",\"short_description\":\"Thisisadescription2\",\"note\":\"Hereisanote2\",\"price\":6,\"time_frame_date\":\"12/23/35\",\"time_frame_time\":\"1:25\",\"location\":\"MyLocation2\"}]}";
 			object = (JSONObject) new JSONTokener(json).nextValue();
-			
+
+		} catch (Exception e) {
+			Log.e("ACW", "sample JSON failed");
 		}
-		catch(Exception e){
-			Log.e("ACW","sample JSON failed"); 
-		}
-		return object; 
+		return object;
 	}
-	private void loadJobs(JSONArray jobs){
-		if(jobs != null){
+
+	private void loadJobs(JSONArray jobs) {
+		if (jobs != null) {
 			mJobs.clear();
-			try{
-				Log.i("ACW","Jobs in array: " + jobs.length());
-				for(int i = 0; i < jobs.length(); i++) {
+			try {
+				Log.i("ACW", "Jobs in array: " + jobs.length());
+				for (int i = 0; i < jobs.length(); i++) {
 					JSONObject currentJob = jobs.getJSONObject(i);
 					Integer task_id = currentJob.getInt("task_id");
 					String fName = currentJob.getString("first_name");
 					String lName = currentJob.getString("last_name");
-					String short_description = currentJob.getString("short_description"); 
+					String short_description = currentJob
+							.getString("short_description");
 					String note = currentJob.getString("notes");
-					Integer price = currentJob.getInt("price"); 
-					String time_frame_date = currentJob.getString("time_frame_date");
-					String time_frame_time = currentJob.getString("time_frame_time");
-					String location = currentJob.getString("location"); 
-					Log.i("ACW","The item: " + task_id.toString() + " " + fName + " " + lName + " " + short_description + " " + note + " " + price.toString() + " "+ time_frame_date + " " + time_frame_time + " " + location); 
-					mJobs.add(new Job(task_id,fName,lName,short_description,note,price,time_frame_date,time_frame_time,location));
-							
+					Integer price = currentJob.getInt("price");
+					String time_frame_date = currentJob
+							.getString("time_frame_date");
+					String time_frame_time = currentJob
+							.getString("time_frame_time");
+					String location = currentJob.getString("location");
+					Log.i("ACW", "The item: " + task_id.toString() + " "
+							+ fName + " " + lName + " " + short_description
+							+ " " + note + " " + price.toString() + " "
+							+ time_frame_date + " " + time_frame_time + " "
+							+ location);
+					mJobs.add(new Job(task_id, fName, lName, short_description,
+							note, price, time_frame_date, time_frame_time,
+							location));
+
 				}
-				Log.i("ACW","let's just see if anything crashes!");
+				Log.i("ACW", "let's just see if anything crashes!");
+			} catch (Exception e) {
+				Log.i("ACW", "Exception when adding jobs: " + e);
 			}
-			catch (Exception e){
-				Log.i("ACW","Exception when adding jobs: " + e); 
-			}
-		}else{
+		} else {
 			Log.i("ACW", "JSON OBJECT NULL: Line 105");
 		}
 	}
-	
+
 	private class getJobsTask extends AsyncTask<String, Void, String> {
-	    /** The system calls this to perform work in a worker thread and
-	      * delivers it the parameters given to AsyncTask.execute() */
-	    @Override
-		protected String doInBackground(String... urls) {		
-	    	HttpClient httpclient = new DefaultHttpClient();
+		/**
+		 * The system calls this to perform work in a worker thread and delivers
+		 * it the parameters given to AsyncTask.execute()
+		 */
+		@Override
+		protected String doInBackground(String... urls) {
+			HttpClient httpclient = new DefaultHttpClient();
 			HttpGet httppost = new HttpGet(urls[0]);
 			HttpResponse response = null;
 			HttpEntity entity = null;
@@ -241,28 +251,29 @@ groceryJobs.setOnClickListener(new View.OnClickListener() {
 				}
 			}
 			Log.i("ACW", "MainActivity. Line 212. Request not parsed correctly");
-			return "get failed";		   
-	    }
-	    
-	    /** The system calls this to perform work in the UI thread and delivers
-	      * the result from doInBackground() */
-	    protected void onPostExecute(String userInformation) {
-	    	// #TODO 
-	    	Log.i("ACW", "Info returned: " + userInformation);
-	    	try {
-				mJobsAvailable = (JSONObject) new JSONTokener(userInformation).nextValue();
+			return "get failed";
+		}
+
+		/**
+		 * The system calls this to perform work in the UI thread and delivers
+		 * the result from doInBackground()
+		 */
+		protected void onPostExecute(String userInformation) {
+			// #TODO
+			Log.i("ACW", "Info returned: " + userInformation);
+			try {
+				mJobsAvailable = (JSONObject) new JSONTokener(userInformation)
+						.nextValue();
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	    	return;
-	    	
-	    }
-	}
-	
+			return;
 
-	
-	public class Job{
+		}
+	}
+
+	public class Job {
 		Integer task_id;
 		String fName;
 		String lName;
@@ -271,20 +282,22 @@ groceryJobs.setOnClickListener(new View.OnClickListener() {
 		Integer price;
 		String time_frame_date;
 		String time_frame_time;
-		String location; 
-		Job(Integer task_id,String fName,String lName,String short_description,String note,Integer price,String time_frame_date,String time_frame_time,String location){
+		String location;
+
+		Job(Integer task_id, String fName, String lName,
+				String short_description, String note, Integer price,
+				String time_frame_date, String time_frame_time, String location) {
 			this.task_id = task_id;
-			this.fName = fName; 
-			this.lName = lName; 
-			this.short_description = short_description; 
+			this.fName = fName;
+			this.lName = lName;
+			this.short_description = short_description;
 			this.note = note;
-			this.price = price; 
-			this.time_frame_date = time_frame_date; 
-			this.time_frame_time = time_frame_time; 
-			this.location = location; 
-			
+			this.price = price;
+			this.time_frame_date = time_frame_date;
+			this.time_frame_time = time_frame_time;
+			this.location = location;
+
 		}
 	}
-
 
 }

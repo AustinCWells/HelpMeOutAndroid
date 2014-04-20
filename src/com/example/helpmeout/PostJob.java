@@ -1,13 +1,19 @@
 package com.example.helpmeout;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 
 public class PostJob extends ActionBarActivity {
@@ -16,6 +22,12 @@ public class PostJob extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_post_job);
+		
+		
+		View child = getLayoutInflater().inflate(R.layout.custom_date_picker, null);
+		ViewGroup viewGroup = (ViewGroup) findViewById(R.id.customDatePickerView); 
+		viewGroup.addView(child);
+		
 		
 		Spinner categoriesSpinner = (Spinner) findViewById(R.id.categorySpinner);
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.jobCategories, android.R.layout.simple_spinner_item);
@@ -85,6 +97,40 @@ public class PostJob extends ActionBarActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
+	/* Code for preventing scroll problems from https://groups.google.com/forum/?fromgroups#!topic/android-developers/FkSfJI6dH8w */
+	public class CustomDatePicker extends DatePicker
+	{
+	    public CustomDatePicker(Context context, AttributeSet attrs, int
+	defStyle)
+	    {
+	        super(context, attrs, defStyle);
+	    }
+
+	    public CustomDatePicker(Context context, AttributeSet attrs)
+	    {
+	        super(context, attrs);
+	    }
+
+	    public CustomDatePicker(Context context)
+	    {
+	        super(context);
+	    }
+
+	    @Override
+	    public boolean onInterceptTouchEvent(MotionEvent ev)
+	    {
+	        /* Prevent parent controls from stealing our events once we've
+	gotten a touch down */
+	        if (ev.getActionMasked() == MotionEvent.ACTION_DOWN)
+	        {
+	            ViewParent p = getParent();
+	            if (p != null)
+	                p.requestDisallowInterceptTouchEvent(true);
+	        }
+
+	        return false;
+	    }
+	}
 
 
 }

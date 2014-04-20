@@ -25,7 +25,8 @@
 		    android:id="@+id/allJobsButton"
 		    android:text="@string/allJobsText"
 			android:layout_width= "fill_parent"
-			android:layout_height= "wrap_content"/>
+			android:layout_height= "wrap_content"
+			android:visibility="gone"/>
 	    <Button 
 		    android:id="@+id/foodJobsButton"
 		    android:text="@string/foodJobsText"
