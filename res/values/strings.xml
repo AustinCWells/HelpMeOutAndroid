@@ -21,12 +21,12 @@
 
     <string-array name="jobCategories">
         <item>Food</item>
-        <item>Laundry</item>
-        <item>Grocery</item>
-        <item>Cleaning</item>
         <item>Rides</item>
-        <item>Tech-Support</item>
+        <item>Grocerieså</item>
+        <item>Cleaning</item>
+        <item>Laundry</item>
         <item>Maintenance</item>
+        <item>TechSupport</item>
         <item>Others</item>
     </string-array>
 
@@ -99,8 +99,14 @@
     <string name="backText">Back</string>
     <string name="signoutText">Sign Out</string>
     <string name="not_available">N/A</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading&#8230;</string>
     <string name="title_activity_all_jobs">AllJobs</string>
     <string name="offerHelp">offer help</string>
+    <string name="notesHint">Notes: </string>
+    <string name="title_activity_display_my_jobs">DisplayMyJobs</string>
+    <string name="title_activity_display_jobs_im_doing">DisplayJobsImDoing</string>
+    <string name="jobsINeedText">Jobs I Need Done</string>
+    <string name="jobsImDoingText">Jobs I\'m Doing</string>
+    
 
 </resources>

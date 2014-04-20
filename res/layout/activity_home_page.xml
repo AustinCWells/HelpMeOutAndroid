@@ -69,8 +69,13 @@
 		android:layout_width= "fill_parent"
 		android:layout_height= "wrap_content"/>
     <Button 
-	    android:id="@+id/myJobsButton"
-	    android:text="@string/myJobsText"
+	    android:id="@+id/jobsINeedDoneButton"
+	    android:text="@string/jobsINeedText"
+		android:layout_width= "fill_parent"
+		android:layout_height= "wrap_content"/>
+     <Button 
+	    android:id="@+id/jobsImDoingButton"
+	    android:text="@string/jobsImDoingText"
 		android:layout_width= "fill_parent"
 		android:layout_height= "wrap_content"/>
      <Button 

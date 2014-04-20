@@ -81,12 +81,27 @@
             android:layout_below="@id/meetingLocationInput"
             android:layout_toRightOf="@id/description"
             android:hint="@string/descriptionHint" />
+        <TextView
+            android:id="@+id/notes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/descriptionInput"
+            android:text="@string/notesHint"
+            android:textSize="15sp" />
+        
+         <EditText
+            android:id="@+id/notesInput"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/descriptionInput"
+            android:layout_toRightOf="@id/notes"
+            android:hint="@string/descriptionHint" />
 
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/descriptionInput"
+            android:layout_below="@id/notesInput"
             android:text="@string/timeText"
             android:textSize="15sp" />
 
@@ -117,10 +132,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/date" >
-
-           
-            
-        </HorizontalScrollView>
+			<DatePicker
+	                android:id="@+id/datePicker"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:calendarViewShown="false"/>
+	           
+	           
+	            
+	        </HorizontalScrollView>
        
 		<LinearLayout  
 		    android:id="@+id/customDatePickerView"
@@ -129,6 +149,7 @@
             android:orientation="vertical">
 		    
 		</LinearLayout>
+		
         <TextView
             android:id="@+id/negotiable"
             android:layout_width="wrap_content"
@@ -158,9 +179,8 @@
             android:id="@+id/submitButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@+id/negotiableSpinner"
             android:layout_below="@+id/negotiableSpinner"
-            android:layout_toEndOf="@id/negotiableSpinner"
+            android:layout_alignParentRight="true"
             android:text="@string/submitText" />
     </RelativeLayout>
 

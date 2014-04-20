@@ -31,90 +31,109 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class HomePage extends ActionBarActivity {
-	public static String mUserId; 
+	public static String mUserId;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home_page);
-		Button mPostJob, mGetJob, mProfile, mMyJobs, mSignOut;
-		TextView mUserName; 
-		mMyJobs = (Button) findViewById(R.id.myJobsButton);
+		Button mPostJob, mGetJob, mProfile, mMyJobs, mSignOut, mJobsINeedDone, mJobsImDoing;
+		TextView mUserName;
+		mJobsINeedDone = (Button) findViewById(R.id.jobsINeedDoneButton);
+		mJobsImDoing = (Button) findViewById(R.id.jobsImDoingButton);
 		mGetJob = (Button) findViewById(R.id.getJobButton);
 		mPostJob = (Button) findViewById(R.id.postJobButton);
 		mProfile = (Button) findViewById(R.id.profileButton);
 		mSignOut = (Button) findViewById(R.id.signOutButton);
 		mUserName = (TextView) findViewById(R.id.name);
-		
+
 		Intent i = getIntent();
 		mUserId = i.getStringExtra("user_id");
-		
-		Log.i("ACW","Executing useraccount info");
-		new displayUserInfoTask().execute("http://107.170.79.251/HelpMeOut/api/useraccount");
+
+		Log.i("ACW", "Executing useraccount info");
+		new displayUserInfoTask()
+				.execute("http://107.170.79.251/HelpMeOut/api/useraccount");
 		mSignOut.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				toMainPage();
-				
+
 			}
 		});
-		mMyJobs.setOnClickListener(new View.OnClickListener() {
-			
+		mJobsINeedDone.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
-				toMyJobs();
-				
+				toJobsINeedDone();
+
+			}
+		});
+		mJobsImDoing.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				toJobsImDoing();
+
 			}
 		});
 		mProfile.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				toProfile(); 
-				
+				toProfile();
+
 			}
 		});
 		mPostJob.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				toPostJob(); 
-				
+				toPostJob();
+
 			}
 		});
 		mGetJob.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				toAvailableJobs();
-				
+
 			}
 		});
 
 	}
-	private void toMainPage(){
+
+	private void toMainPage() {
 		Intent intent = new Intent(this, MainActivity.class);
-		startActivity(intent); 
+		startActivity(intent);
 	}
-	
-	private void toMyJobs(){
-		//Intent intent = new Intent(this, JobsDisplay.class);
-		//startActivity(intent);
+
+	private void toJobsINeedDone() {
+		Intent intent = new Intent(this, DisplayJobsINeedDone.class);
+		startActivity(intent);
 	}
-	
-	private void toProfile(){
+	private void toJobsImDoing() { 
+		Intent intent = new Intent(this, DisplayJobsImDoing.class);
+		startActivity(intent);
+		
+	}
+
+	private void toProfile() {
 		Intent intent = new Intent(this, ProfilePage.class);
 		startActivity(intent);
 	}
-	private void toAvailableJobs(){
+
+	private void toAvailableJobs() {
 		Intent intent = new Intent(this, JobsAvailable.class);
 		startActivity(intent);
 	}
-	
-	private void toPostJob(){
+
+	private void toPostJob() {
 		Intent intent = new Intent(this, PostJob.class);
 		startActivity(intent);
 	}
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -134,13 +153,15 @@ public class HomePage extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	private class displayUserInfoTask extends AsyncTask<String, Void, String> {
-	    /** The system calls this to perform work in a worker thread and
-	      * delivers it the parameters given to AsyncTask.execute() */
-	    @Override
+		/**
+		 * The system calls this to perform work in a worker thread and delivers
+		 * it the parameters given to AsyncTask.execute()
+		 */
+		@Override
 		protected String doInBackground(String... urls) {
-	       
+
 			String userId;
 
 			userId = getUserId();
@@ -182,70 +203,67 @@ public class HomePage extends ActionBarActivity {
 			}
 			Log.i("ACW", "MainActivity. Line 212. Request not parsed correctly");
 			return "get failed";
-		   
-	    }
-	    
-	    /** The system calls this to perform work in the UI thread and delivers
-	      * the result from doInBackground() */
-	    protected void onPostExecute(String userInformation) {
-	    	// #TODO 
-	    	Log.i("ACW", "Info returned: " + userInformation); 
-	    	
-	    	updateUserInformation(userInformation); 
-	    	
-	    	return;
-	    	
-	    }
-	    
-	    private void updateUserInformation(String userInformation){
-	    	
-	    	JSONObject object;
+
+		}
+
+		/**
+		 * The system calls this to perform work in the UI thread and delivers
+		 * the result from doInBackground()
+		 */
+		protected void onPostExecute(String userInformation) {
+			// #TODO
+			Log.i("ACW", "Info returned: " + userInformation);
+
+			updateUserInformation(userInformation);
+
+			return;
+
+		}
+
+		private void updateUserInformation(String userInformation) {
+
+			JSONObject object;
 			try {
-				object = (JSONObject) new JSONTokener(userInformation).nextValue();
+				object = (JSONObject) new JSONTokener(userInformation)
+						.nextValue();
 				String fName = object.getString("first_name");
 				String lName = object.getString("last_name");
-				String tokens = object.getString("tokens"); 
-				String email = object.getString("email"); 
-				
+				String tokens = object.getString("tokens");
+				String email = object.getString("email");
+
 				TextView nameView = (TextView) findViewById(R.id.name);
 				TextView tokensView = (TextView) findViewById(R.id.tokens);
 				TextView emailView = (TextView) findViewById(R.id.email);
-				
+
 				nameView.setText("Name: " + fName + " " + lName);
 				tokensView.setText("Tokens: " + tokens);
-				emailView.setText("Email: " + email); 
-				// #TODO update with rating info not user info 
-				
+				emailView.setText("Email: " + email);
+				// #TODO update with rating info not user info
+
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
-	    	return;
-	    }
-	    
-	  
-	    
-	    private String getUserId(){
-			Log.i("ACW", "getting users ID"); 
-	    	Intent i = getIntent();
+
+			return;
+		}
+
+		private String getUserId() {
+			Log.i("ACW", "getting users ID");
+			Intent i = getIntent();
 			String id = i.getStringExtra("user_id");
-			
+
 			return id;
-	    }
-	    }
-	
-	  private static String getResponseText(InputStream stream) {
-	        // shortcut for getting entire stream: http://weblogs.java.net/blog/pat/archive/2004/10/stupid_scanner_1.html
-	        Scanner scanner = new Scanner(stream);
-	        final String result = scanner.useDelimiter("\\A").next();
-	        scanner.close();
-	        return result;
-	    }
-	    
+		}
 	}
-	
 
+	private static String getResponseText(InputStream stream) {
+		// shortcut for getting entire stream:
+		// http://weblogs.java.net/blog/pat/archive/2004/10/stupid_scanner_1.html
+		Scanner scanner = new Scanner(stream);
+		final String result = scanner.useDelimiter("\\A").next();
+		scanner.close();
+		return result;
+	}
 
-
+}

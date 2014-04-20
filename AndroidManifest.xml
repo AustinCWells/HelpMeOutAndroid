@@ -18,8 +18,11 @@
         <activity
             android:name="com.example.helpmeout.MainActivity"
             android:label="@string/app_name" >
-            
-            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.example.helpmeout.HomePage"
@@ -28,11 +31,6 @@
         <activity
             android:name="com.example.helpmeout.PostJob"
             android:label="@string/title_activity_post_job" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.example.helpmeout.JobsAvailable"
@@ -53,6 +51,14 @@
         <activity
             android:name="com.example.helpmeout.DisplayAvailableJobs"
             android:label="@string/title_activity_all_jobs" >
+        </activity>
+        <activity
+            android:name="com.example.helpmeout.DisplayJobsINeedDone"
+            android:label="@string/title_activity_display_my_jobs" >
+        </activity>
+        <activity
+            android:name="com.example.helpmeout.DisplayJobsImDoing"
+            android:label="@string/title_activity_display_jobs_im_doing" >
         </activity>
     </application>
 

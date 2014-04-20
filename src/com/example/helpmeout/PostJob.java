@@ -1,10 +1,27 @@
 package com.example.helpmeout;
 
+import java.io.IOException;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.ParseException;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -14,15 +31,18 @@ import android.view.ViewParent;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 public class PostJob extends ActionBarActivity {
-
+	Context mContext;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_post_job);
-		
+		mContext = this; 
 		
 		View child = getLayoutInflater().inflate(R.layout.custom_date_picker, null);
 		ViewGroup viewGroup = (ViewGroup) findViewById(R.id.customDatePickerView); 
@@ -64,12 +84,7 @@ public class PostJob extends ActionBarActivity {
 	}
 	
 	private void initiateJobSubmission(){
-		boolean isValidJob = checkIfValidJob();
-	}
-	
-	private boolean checkIfValidJob(){
-		
-		return false; 
+		new JobSubmitTask().execute("http://107.170.79.251/HelpMeOut/api/postatask");
 	}
 	
 	private void goHome(){
@@ -131,6 +146,86 @@ public class PostJob extends ActionBarActivity {
 	        return false;
 	    }
 	}
+	
+	private class JobSubmitTask extends AsyncTask<String, Void, String>{
 
+		@Override
+		protected String doInBackground(String... urls) {
+			Log.i("ACW","Here we go!");
+			String userIdString = HomePage.mUserId;
+			Spinner categorySpinner = (Spinner) findViewById(R.id.categorySpinner);
+			Spinner paymentSpinner = (Spinner) findViewById(R.id.paymentAmountSpinner);
+			EditText locationInput = (EditText) findViewById(R.id.meetingLocationInput);
+			EditText descriptionInput = (EditText) findViewById(R.id.descriptionInput);
+			EditText notesInput = (EditText) findViewById(R.id.notesInput);
+			TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
+			DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+			Log.i("ACW","1");
+			int category = categorySpinner.getSelectedItemPosition();
+			int userId = Integer.parseInt(userIdString); 
+			int payment = paymentSpinner.getSelectedItemPosition()+3; 
+			String location = locationInput.getText().toString();
+			String description = descriptionInput.getText().toString();
+			String notes = notesInput.getText().toString();
+			String time = timePicker.getCurrentHour().toString() + ":" + timePicker.getCurrentMinute().toString(); 
+			String date = Integer.toString(datePicker.getYear()) + "-" + Integer.toString(datePicker.getDayOfMonth()) + "-" + Integer.toString(datePicker.getDayOfMonth());
+			Log.i("ACW","2");
+			
+			HttpClient httpclient = new DefaultHttpClient();
+			HttpPost httppost = new HttpPost(urls[0]);
+			HttpResponse response = null;
+			HttpEntity entity = null;
+			JSONObject json = new JSONObject();
+			Log.i("ACW","3");
+			try {
+				// Add data
+				json.put("begger_id", userId);
+				json.put("category_id", category);
+				json.put("short_description", description);
+				json.put("price", payment);
+				json.put("location", location);
+				json.put("time_frame_date", time);
+				json.put("time_frame_time", date);
+				json.put("notes", notes);
+				StringEntity se = new StringEntity(json.toString());
+				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
+						"application/json"));
+				httppost.setEntity(se);
+				Log.i("ACW","4");
+				// Execute HTTP Post Request
+				response = httpclient.execute(httppost);
+				entity = response.getEntity();
+
+			} catch (ClientProtocolException e) {
+				Log.i("ACW", "PostJob. Line 199, Exception e: " + e);
+			} catch (IOException e) {
+				Log.i("ACW", "PostJob. Line 199, Exception e: " + e);
+			} catch (Exception e) {
+				Log.i("ACW", "PostJob. Line 199, Exception e");
+				Log.i("ACW", "exception thrown", e);
+
+			}
+			Log.i("ACW","5");
+			return "post executed!";
+		}
+		
+		 protected void onPostExecute(String userInformation) {
+			 Context context = getApplicationContext();
+				CharSequence text = "Your job has been posted! ";
+				int duration = Toast.LENGTH_SHORT;
+
+				Toast toast = Toast.makeText(context, text, duration);
+				toast.show();	
+				
+				Intent intent = new Intent(mContext,HomePage.class); 
+				intent.putExtra("user_id", HomePage.mUserId);
+				startActivity(intent);
+				return;
+		    	
+		    }
+		
+	}
+	
+	 
 
 }
