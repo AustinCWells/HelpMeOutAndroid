@@ -31,9 +31,9 @@ public class PostJob extends ActionBarActivity {
 		ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.negotiable_array, android.R.layout.simple_spinner_item);
 		adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		negotiableSpinner.setAdapter(adapter3); 
-		Button mHomeJob;
-		mHomeJob = (Button) findViewById(R.id.submitButton);
-		mHomeJob.setOnClickListener(new View.OnClickListener() {
+		Button homeButton = (Button) findViewById(R.id.homeButton);
+		Button submitButton = (Button) findViewById(R.id.submitButton);
+		homeButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -41,6 +41,23 @@ public class PostJob extends ActionBarActivity {
 				
 			}
 		});
+		submitButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			initiateJobSubmission(); 
+				
+			}
+		});
+	}
+	
+	private void initiateJobSubmission(){
+		boolean isValidJob = checkIfValidJob();
+	}
+	
+	private boolean checkIfValidJob(){
+		
+		return false; 
 	}
 	
 	private void goHome(){

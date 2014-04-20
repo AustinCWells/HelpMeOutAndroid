@@ -1,9 +1,7 @@
 package com.example.helpmeout;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -11,16 +9,15 @@ import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicHeader;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -29,30 +26,104 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class JobsAvailable extends ActionBarActivity {
 	public static JSONObject mJobsAvailable; 
 	public static ArrayList<Job> mJobs; 
+	private Context mContext;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_jobs_available);
+	
 		new getJobsTask().execute("http://107.170.79.251/HelpMeOut/api/tasks");
 		//mJobsAvailable = getJSONforTest(); 
+		mContext = this; 
 		mJobs = new ArrayList<Job>(); 
 		//get buttons for all jobs
 		Button allJobs = (Button) findViewById(R.id.allJobsButton);
-		Button foodJobs = (Button) findViewById(R.id.allJobsButton);
+		Button foodJobs = (Button) findViewById(R.id.foodJobsButton);
 		Button laundryJobs = (Button) findViewById(R.id.laundryJobsButton);
 		Button groceryJobs = (Button) findViewById(R.id.groceryJobsButton);
 		Button cleaningJobs = (Button) findViewById(R.id.cleaningJobsButton);
-		Button ridesJobs = (Button) findViewById(R.id.ridesJobsButton);
+		Button rideJobs = (Button) findViewById(R.id.ridesJobsButton);
 		Button techJobs = (Button) findViewById(R.id.techSupportJobsButton);
 		Button maintenanceJobs = (Button) findViewById(R.id.maintenanceJobsButton);
 		Button otherJobs = (Button) findViewById(R.id.otherJobsButton);
 		
 		// set click listeners for all jobs
+otherJobs.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				loadJobs(getCategoryJobs("other")); 
+				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				startActivity(intent);
+			}
+		});
+maintenanceJobs.setOnClickListener(new View.OnClickListener() {
+	
+	@Override
+	public void onClick(View v) {
+		loadJobs(getCategoryJobs("maintenance")); 
+		Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+		startActivity(intent);
+	}
+});
+techJobs.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				loadJobs(getCategoryJobs("techSupport")); 
+				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				startActivity(intent);
+			}
+		});
+rideJobs.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				loadJobs(getCategoryJobs("rides")); 
+				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				startActivity(intent);
+			}
+		});
+cleaningJobs.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				loadJobs(getCategoryJobs("cleaning")); 
+				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				startActivity(intent);
+			}
+		});
+groceryJobs.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				loadJobs(getCategoryJobs("groceries")); 
+				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				startActivity(intent);
+			}
+		});
+		laundryJobs.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				loadJobs(getCategoryJobs("laundry")); 
+				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				startActivity(intent);
+			}
+		});
+		foodJobs.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				loadJobs(getCategoryJobs("foodDelivery")); 
+				Intent intent = new Intent(mContext,DisplayAvailableJobs.class); 
+				startActivity(intent);
+			}
+		});
 		allJobs.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -62,15 +133,7 @@ public class JobsAvailable extends ActionBarActivity {
 				
 			}
 		});
-		laundryJobs.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				
-				loadJobs(getCategoryJobs("laundry")); 
-				
-			}
-		});
+		
 		
 		
 		
@@ -120,6 +183,7 @@ public class JobsAvailable extends ActionBarActivity {
 	}
 	private void loadJobs(JSONArray jobs){
 		if(jobs != null){
+			mJobs.clear();
 			try{
 				Log.i("ACW","Jobs in array: " + jobs.length());
 				for(int i = 0; i < jobs.length(); i++) {

@@ -31,7 +31,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class HomePage extends ActionBarActivity {
-
+	public static String mUserId; 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,9 +45,9 @@ public class HomePage extends ActionBarActivity {
 		mSignOut = (Button) findViewById(R.id.signOutButton);
 		mUserName = (TextView) findViewById(R.id.name);
 		
-		//Intent i = getIntent();
-		//String id = i.getStringExtra("user_id");
-		//mUserName.setText(id); 
+		Intent i = getIntent();
+		mUserId = i.getStringExtra("user_id");
+		
 		Log.i("ACW","Executing useraccount info");
 		new displayUserInfoTask().execute("http://107.170.79.251/HelpMeOut/api/useraccount");
 		mSignOut.setOnClickListener(new View.OnClickListener() {
@@ -98,8 +98,8 @@ public class HomePage extends ActionBarActivity {
 	}
 	
 	private void toMyJobs(){
-		Intent intent = new Intent(this, JobsDisplay.class);
-		startActivity(intent);
+		//Intent intent = new Intent(this, JobsDisplay.class);
+		//startActivity(intent);
 	}
 	
 	private void toProfile(){
