@@ -107,6 +107,12 @@
     <string name="title_activity_display_jobs_im_doing">DisplayJobsImDoing</string>
     <string name="jobsINeedText">Jobs I Need Done</string>
     <string name="jobsImDoingText">Jobs I\'m Doing</string>
+    <string name="cancelJob">Cancel Job</string>
+    <string name="finishJob">Finish Job</string>
+    <string name="completed">COMPLETE JOB</string>
+    <string name="cancel">CANCEL JOB</string>
+    <string name="accept">ACCEPT</string>
+    <string name="decline">DECLINE</string>
     
 
 </resources>
