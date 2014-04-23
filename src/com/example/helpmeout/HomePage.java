@@ -229,8 +229,7 @@ public class HomePage extends ActionBarActivity {
 				String fName = object.getString("first_name");
 				String lName = object.getString("last_name");
 				String tokens = object.getString("tokens");
-				String email = object.getString("email");
-
+				String email = object.getString("email"); 
 				TextView nameView = (TextView) findViewById(R.id.name);
 				TextView tokensView = (TextView) findViewById(R.id.tokens);
 				TextView emailView = (TextView) findViewById(R.id.email);
