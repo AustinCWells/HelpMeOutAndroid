@@ -160,38 +160,36 @@ public class PostJob extends ActionBarActivity {
 			EditText notesInput = (EditText) findViewById(R.id.notesInput);
 			TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
 			DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
-			Log.i("ACW","1");
-			int category = categorySpinner.getSelectedItemPosition();
-			int userId = Integer.parseInt(userIdString); 
-			int payment = paymentSpinner.getSelectedItemPosition()+3; 
+		
+			String category = new Integer(categorySpinner.getSelectedItemPosition()-1).toString();
+			String userId = userIdString; 
+			String payment = new Integer(paymentSpinner.getSelectedItemPosition()+3).toString(); 
 			String location = locationInput.getText().toString();
 			String description = descriptionInput.getText().toString();
 			String notes = notesInput.getText().toString();
 			String time = timePicker.getCurrentHour().toString() + ":" + timePicker.getCurrentMinute().toString(); 
 			String date = Integer.toString(datePicker.getYear()) + "-" + Integer.toString(datePicker.getDayOfMonth()) + "-" + Integer.toString(datePicker.getDayOfMonth());
-			Log.i("ACW","2");
 			
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(urls[0]);
 			HttpResponse response = null;
 			HttpEntity entity = null;
 			JSONObject json = new JSONObject();
-			Log.i("ACW","3");
 			try {
 				// Add data
-				json.put("begger_id", userId);
-				json.put("category_id", category);
-				json.put("short_description", description);
+				json.put("userID", userId);
+				json.put("category", category);
+				json.put("description", description);
 				json.put("price", payment);
 				json.put("location", location);
-				json.put("time_frame_date", time);
-				json.put("time_frame_time", date);
+				json.put("deadlineDate", time);
+				json.put("deadlineTime", date);
 				json.put("notes", notes);
 				StringEntity se = new StringEntity(json.toString());
 				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
 						"application/json"));
 				httppost.setEntity(se);
-				Log.i("ACW","4");
+
 				// Execute HTTP Post Request
 				response = httpclient.execute(httppost);
 				entity = response.getEntity();
@@ -205,18 +203,16 @@ public class PostJob extends ActionBarActivity {
 				Log.i("ACW", "exception thrown", e);
 
 			}
-			Log.i("ACW","5");
 			return "post executed!";
 		}
 		
-		 protected void onPostExecute(String userInformation) {
+		 protected void onPostExecute(String jobInformation) {
+			 Log.i("ACW","Job Posted: " + jobInformation);
 			 Context context = getApplicationContext();
 				CharSequence text = "Your job has been posted! ";
 				int duration = Toast.LENGTH_SHORT;
-
 				Toast toast = Toast.makeText(context, text, duration);
 				toast.show();	
-				
 				Intent intent = new Intent(mContext,HomePage.class); 
 				intent.putExtra("user_id", HomePage.mUserId);
 				startActivity(intent);

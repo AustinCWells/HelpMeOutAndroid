@@ -60,6 +60,10 @@
             android:name="com.example.helpmeout.DisplayJobsImDoing"
             android:label="@string/title_activity_display_jobs_im_doing" >
         </activity>
+        <activity
+            android:name="com.example.helpmeout.TaskComplete"
+            android:label="@string/title_activity_task_complete" >
+        </activity>
     </application>
 
 </manifest>

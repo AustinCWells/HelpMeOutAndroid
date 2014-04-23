@@ -113,6 +113,8 @@
     <string name="cancel">CANCEL JOB</string>
     <string name="accept">ACCEPT</string>
     <string name="decline">DECLINE</string>
-    
+    <string name="title_activity_task_complete">TaskComplete</string>
+    <string name="reliability">Reliability</string>
+    <string name="speed">Speed</string>
 
 </resources>

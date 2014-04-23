@@ -991,7 +991,7 @@ containing a value of this type.
         public static final int image=0x7f020058;
     }
     public static final class id {
-        public static final int acceptButton=0x7f060087;
+        public static final int acceptButton=0x7f060088;
         public static final int action_bar=0x7f06001c;
         public static final int action_bar_activity_content=0x7f060015;
         public static final int action_bar_container=0x7f06001b;
@@ -1003,36 +1003,36 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_settings=0x7f060093;
+        public static final int action_settings=0x7f060094;
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int allJobsButton=0x7f060049;
         public static final int always=0x7f06000b;
-        public static final int anchor=0x7f060090;
+        public static final int anchor=0x7f060091;
         public static final int backButton=0x7f060079;
         public static final int beginning=0x7f060011;
-        public static final int button1=0x7f060091;
-        public static final int button2=0x7f060092;
-        public static final int cancelButton=0x7f060086;
-        public static final int cancelJob=0x7f06008a;
+        public static final int button1=0x7f060092;
+        public static final int button2=0x7f060093;
+        public static final int cancelButton=0x7f060087;
+        public static final int cancelJob=0x7f06008b;
         public static final int categorySpinner=0x7f060059;
         public static final int categoryText=0x7f060058;
         public static final int checkbox=0x7f06002d;
-        public static final int chooser_name=0x7f06007f;
-        public static final int chooser_reliability=0x7f060081;
-        public static final int chooser_speed=0x7f060080;
+        public static final int chooser_name=0x7f060080;
+        public static final int chooser_reliability=0x7f060082;
+        public static final int chooser_speed=0x7f060081;
         public static final int cleaningJobsButton=0x7f06004d;
         public static final int collapseActionView=0x7f06000d;
-        public static final int completedButton=0x7f060085;
+        public static final int completedButton=0x7f060086;
         public static final int confirmPassword=0x7f060078;
-        public static final int contact_number=0x7f060082;
+        public static final int contact_number=0x7f060083;
         public static final int container=0x7f06003c;
         public static final int currentJobsButton=0x7f060072;
-        public static final int customDatePicker=0x7f06007b;
+        public static final int customDatePicker=0x7f06007c;
         public static final int customDatePickerView=0x7f060068;
         public static final int date=0x7f060065;
         public static final int datePicker=0x7f060067;
         public static final int datePickerView=0x7f060066;
-        public static final int declineButton=0x7f060088;
+        public static final int declineButton=0x7f060089;
         public static final int default_activity_button=0x7f060028;
         public static final int description=0x7f06005e;
         public static final int descriptionInput=0x7f06005f;
@@ -1045,7 +1045,7 @@ containing a value of this type.
         public static final int end=0x7f060013;
         public static final int expand_activities_button=0x7f060026;
         public static final int expanded_menu=0x7f06002c;
-        public static final int finishJob=0x7f060089;
+        public static final int finishJob=0x7f06008a;
         public static final int firstName=0x7f060073;
         public static final int foodJobsButton=0x7f06004a;
         public static final int genderSpinner=0x7f060075;
@@ -1062,11 +1062,11 @@ containing a value of this type.
         public static final int jobsImDoingButton=0x7f060046;
         public static final int lastName=0x7f060074;
         public static final int laundryJobsButton=0x7f06004b;
-        public static final int lblListHeader=0x7f06008d;
-        public static final int lblListItem=0x7f06008e;
+        public static final int lblListHeader=0x7f06008e;
+        public static final int lblListItem=0x7f06008f;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f060029;
-        public static final int location=0x7f06007e;
+        public static final int location=0x7f06007f;
         public static final int loginButton=0x7f060056;
         public static final int lvExp=0x7f060052;
         public static final int maintenanceJobsButton=0x7f060050;
@@ -1082,18 +1082,18 @@ containing a value of this type.
         public static final int normal=0x7f060000;
         public static final int notes=0x7f060060;
         public static final int notesInput=0x7f060061;
-        public static final int offerHelp=0x7f06008c;
+        public static final int offerHelp=0x7f06008d;
         public static final int otherJobsButton=0x7f060051;
         public static final int overallRating=0x7f060071;
         public static final int overallRatingText=0x7f060070;
-        public static final int parent=0x7f06008f;
+        public static final int parent=0x7f060090;
         public static final int password=0x7f060054;
         public static final int paymentAmount=0x7f06005a;
         public static final int paymentAmountSpinner=0x7f06005b;
         public static final int phoneNumber=0x7f060076;
         public static final int postJobButton=0x7f060044;
         public static final int postJobHeader=0x7f060057;
-        public static final int price=0x7f06007d;
+        public static final int price=0x7f06007e;
         public static final int profileButton=0x7f060047;
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
@@ -1111,7 +1111,7 @@ containing a value of this type.
         public static final int search_plate=0x7f060036;
         public static final int search_src_text=0x7f060037;
         public static final int search_voice_btn=0x7f06003b;
-        public static final int short_description=0x7f06007c;
+        public static final int short_description=0x7f06007d;
         public static final int shortcut=0x7f06002e;
         public static final int showCustom=0x7f060007;
         public static final int showHome=0x7f060004;
@@ -1119,6 +1119,7 @@ containing a value of this type.
         public static final int signOutButton=0x7f060048;
         public static final int signUpButton=0x7f06007a;
         public static final int signupButton=0x7f060055;
+        public static final int speedRating=0x7f06007b;
         public static final int split_action_bar=0x7f06001e;
         public static final int stats1=0x7f06006c;
         public static final int stats2=0x7f06006d;
@@ -1127,12 +1128,12 @@ containing a value of this type.
         public static final int submit_area=0x7f060039;
         public static final int tabMode=0x7f060002;
         public static final int techSupportJobsButton=0x7f06004f;
-        public static final int text=0x7f06008b;
+        public static final int text=0x7f06008c;
         public static final int time=0x7f060062;
         public static final int timePicker=0x7f060064;
         public static final int timePickerView=0x7f060063;
-        public static final int time_frame_date=0x7f060084;
-        public static final int time_frame_time=0x7f060083;
+        public static final int time_frame_date=0x7f060085;
+        public static final int time_frame_time=0x7f060084;
         public static final int title=0x7f06002b;
         public static final int tokens=0x7f060040;
         public static final int top_action_bar=0x7f060020;
@@ -1199,14 +1200,15 @@ containing a value of this type.
         public static final int activity_post_job=0x7f03001e;
         public static final int activity_profile_page=0x7f03001f;
         public static final int activity_sign_up=0x7f030020;
-        public static final int custom_date_picker=0x7f030021;
-        public static final int job_i_need_done_item=0x7f030022;
-        public static final int job_im_doing_item=0x7f030023;
-        public static final int job_item=0x7f030024;
-        public static final int list_group=0x7f030025;
-        public static final int list_item=0x7f030026;
-        public static final int support_simple_spinner_dropdown_item=0x7f030027;
-        public static final int test=0x7f030028;
+        public static final int activity_task_complete=0x7f030021;
+        public static final int custom_date_picker=0x7f030022;
+        public static final int job_i_need_done_item=0x7f030023;
+        public static final int job_im_doing_item=0x7f030024;
+        public static final int job_item=0x7f030025;
+        public static final int list_group=0x7f030026;
+        public static final int list_item=0x7f030027;
+        public static final int support_simple_spinner_dropdown_item=0x7f030028;
+        public static final int test=0x7f030029;
     }
     public static final class menu {
         public static final int all_jobs=0x7f0e0000;
@@ -1219,6 +1221,7 @@ containing a value of this type.
         public static final int post_job=0x7f0e0007;
         public static final int profile_page=0x7f0e0008;
         public static final int sign_up=0x7f0e0009;
+        public static final int task_complete=0x7f0e000a;
     }
     public static final class raw {
         public static final int video=0x7f050000;
@@ -1316,10 +1319,12 @@ containing a value of this type.
         public static final int postJobText=0x7f0b0019;
         public static final int profileText=0x7f0b001a;
         public static final int rank=0x7f0b0017;
+        public static final int reliability=0x7f0b0052;
         public static final int reliabilityText=0x7f0b0036;
         public static final int ridesJobsText=0x7f0b002f;
         public static final int signUpText=0x7f0b0011;
         public static final int signoutText=0x7f0b0041;
+        public static final int speed=0x7f0b0053;
         public static final int submitText=0x7f0b0028;
         public static final int techSupportJobsText=0x7f0b0030;
         public static final int timeText=0x7f0b0024;
@@ -1332,6 +1337,7 @@ containing a value of this type.
         public static final int title_activity_post_job=0x7f0b001d;
         public static final int title_activity_profile_page=0x7f0b0034;
         public static final int title_activity_sign_up=0x7f0b0039;
+        public static final int title_activity_task_complete=0x7f0b0051;
     }
     public static final class style {
         /** 
