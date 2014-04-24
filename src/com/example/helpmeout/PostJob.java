@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -12,7 +11,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
 import android.content.Context;
@@ -161,7 +159,7 @@ public class PostJob extends ActionBarActivity {
 			TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
 			DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
 		
-			String category = new Integer(categorySpinner.getSelectedItemPosition()-1).toString();
+			String category = new Integer(categorySpinner.getSelectedItemPosition()).toString();
 			String userId = userIdString; 
 			String payment = new Integer(paymentSpinner.getSelectedItemPosition()+3).toString(); 
 			String location = locationInput.getText().toString();

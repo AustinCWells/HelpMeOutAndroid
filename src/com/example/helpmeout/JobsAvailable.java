@@ -120,7 +120,7 @@ public class JobsAvailable extends ActionBarActivity {
 
 			@Override
 			public void onClick(View v) {
-				loadJobs(getCategoryJobs("foodDelivery"));
+				loadJobs(getCategoryJobs("food"));
 				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
@@ -167,18 +167,6 @@ public class JobsAvailable extends ActionBarActivity {
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	private JSONObject getJSONforTest() {
-		JSONObject object = new JSONObject();
-		try {
-			String json = "{\"laundry\":[{\"task_id\":1,\"fName\":\"austin\",\"lName\":\"wells\",\"short_description\":\"Thisisadescription\",\"note\":\"Hereisanote\",\"price\":5,\"time_frame_date\":\"12/23/34\",\"time_frame_time\":\"1:23\",\"location\":\"MyLocation\"},{\"task_id\":2,\"fName\":\"John\",\"lName\":\"Smith\",\"short_description\":\"Thisisadescription2\",\"note\":\"Hereisanote2\",\"price\":6,\"time_frame_date\":\"12/23/35\",\"time_frame_time\":\"1:25\",\"location\":\"MyLocation2\"}],\"food\":[{\"task_id\":3,\"fName\":\"bob\",\"lName\":\"wells\",\"short_description\":\"Thisisadescription\",\"note\":\"Hereisanote\",\"price\":5,\"time_frame_date\":\"12/23/34\",\"time_frame_time\":\"1:23\",\"location\":\"MyLocation\"},{\"task_id\":4,\"fName\":\"harly\",\"lName\":\"Smith\",\"short_description\":\"Thisisadescription2\",\"note\":\"Hereisanote2\",\"price\":6,\"time_frame_date\":\"12/23/35\",\"time_frame_time\":\"1:25\",\"location\":\"MyLocation2\"}]}";
-			object = (JSONObject) new JSONTokener(json).nextValue();
-
-		} catch (Exception e) {
-			Log.e("ACW", "sample JSON failed");
-		}
-		return object;
 	}
 
 	private void loadJobs(JSONArray jobs) {
