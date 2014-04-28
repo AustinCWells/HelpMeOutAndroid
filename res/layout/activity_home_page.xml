@@ -7,15 +7,10 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.helpmeout.HomePage">
+    tools:context="com.example.helpmeout.HomePage"
+    android:background="#2c3e50">
     
-    <TextView 
-	    android:id="@+id/header"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:textSize="25dip"
-	    android:layout_centerHorizontal= "true"
-	    android:text= "@string/header"/>
+  
     
     <LinearLayout  
         android:layout_width="match_parent"
@@ -36,57 +31,85 @@
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:text= "@string/loading"
-		    android:layout_marginLeft= "30dip"/>
+		    android:layout_marginLeft= "30dip"
+		    android:textColor="#fff"/>
 	        <TextView 
 		    android:id="@+id/tokens"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:text= "@string/loading"
-		    android:layout_marginLeft= "30dip"/>
+		    android:layout_marginLeft= "30dip"
+		    android:textColor="#fff"/>
 	        <TextView 
 		    android:id="@+id/email"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:text= "@string/loading"
-		    android:layout_marginLeft= "30dip"/>
+		    android:layout_marginLeft= "30dip"
+		    android:textColor="#fff"/>
 	        <TextView 
 		    android:id="@+id/stats3"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:layout_marginLeft= "30dip"/>
+		    android:layout_marginLeft= "30dip"
+		    android:textColor="#fff"/>
 	   </LinearLayout>
     </LinearLayout>
    
     <Button 
+           android:layout_marginTop="5dip"
 	    android:id="@+id/getJobButton"
 	    android:text="@string/getJobText"
 		android:layout_width= "fill_parent"
-		android:layout_height= "wrap_content"/>
+		android:layout_height= "wrap_content"
+		android:drawableLeft="@drawable/money"
+		android:background="@drawable/button_style"
+		android:fontFamily="sans-serif-thin"   />
     <Button 
+           android:layout_marginTop="5dip"
 	    android:id="@+id/postJobButton"
 	    android:text="@string/postJobText"
 		android:layout_width= "fill_parent"
-		android:layout_height= "wrap_content"/>
+		android:layout_height= "wrap_content"
+		android:drawableLeft="@drawable/briefcase"
+		android:background="@drawable/button_style"
+		android:fontFamily="sans-serif-thin"/>
     <Button 
+           android:layout_marginTop="5dip"
 	    android:id="@+id/jobsINeedDoneButton"
 	    android:text="@string/jobsINeedText"
 		android:layout_width= "fill_parent"
-		android:layout_height= "wrap_content"/>
+		android:layout_height= "wrap_content"
+		android:drawableLeft="@drawable/to_do_list"
+		android:background="@drawable/button_style"
+		android:fontFamily="sans-serif-thin"/>
      <Button 
+            android:layout_marginTop="5dip"
 	    android:id="@+id/jobsImDoingButton"
 	    android:text="@string/jobsImDoingText"
 		android:layout_width= "fill_parent"
-		android:layout_height= "wrap_content"/>
+		android:layout_height= "wrap_content"
+		android:drawableLeft="@drawable/worker"
+		android:background="@drawable/button_style"
+		android:fontFamily="sans-serif-thin"/>
      <Button 
+            android:layout_marginTop="5dip"
 	    android:id="@+id/profileButton"
 	    android:text="@string/profileText"
 		android:layout_width= "fill_parent"
-		android:layout_height= "wrap_content"/>
+		android:layout_height= "wrap_content"
+		android:drawableLeft="@drawable/profile"
+		android:background="@drawable/button_style"
+		android:fontFamily="sans-serif-thin"/>
      <Button 
+         android:layout_marginTop="5dip"
 	    android:id="@+id/signOutButton"
 	    android:text="@string/signoutText"
 		android:layout_width= "fill_parent"
-		android:layout_height= "wrap_content"/>
+		android:layout_height= "wrap_content"
+		android:drawableLeft="@drawable/sign_out"
+		android:background="@drawable/button_style"
+		android:fontFamily="sans-serif-thin"/>
  
 
     

@@ -6,45 +6,84 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.helpmeout.MainActivity">
+    tools:context="com.example.helpmeout.MainActivity"
+    android:background="#2c3e50">
 
-	<TextView 
+	<ImageView
 	    android:id="@+id/header"
-	    android:layout_width="match_parent"
+	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:textSize="25dip"
 	    android:layout_centerHorizontal= "true"
-	    android:text= "@string/header"/>
+	    android:src="@drawable/logo"
+	   />
 	<EditText
 	    android:id="@+id/email"
+	    android:layout_centerHorizontal="true"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:hint="@string/emailHint"
 	    android:layout_below="@id/header"
 		android:layout_margin="10dip"    
-	    android:inputType="textEmailAddress"/>
+	    android:inputType="textEmailAddress"
+	    android:fontFamily="sans-serif-thin" 
+	    android:background="@drawable/input_style" />
 	<EditText
 	    android:id="@+id/password"
+	    android:layout_centerHorizontal="true"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:hint="@string/passwordHint"
 	    android:layout_below="@id/email"
 	    android:layout_margin="10dip" 
-	    android:inputType="textPassword" />
+	    android:inputType="textPassword"
+	    android:fontFamily="sans-serif-thin"  
+	    android:background="@drawable/input_style" 
+	   />
 	
 	<Button 
 	    android:id="@+id/signupButton"
 	    android:text="@string/signUpText"
-		android:layout_below="@id/password"
+		android:layout_alignParentBottom="true"
+		
 		android:layout_width= "wrap_content"
-		android:layout_height= "wrap_content"/>
+		android:layout_centerHorizontal="true"
+		android:layout_height= "wrap_content"
+		android:drawableLeft="@drawable/create_account"
+		android:paddingLeft="10dip"
+		android:paddingRight="10dip"
+		android:layout_marginTop="5dip"
+		android:background="@drawable/button_style"
+		android:fontFamily="sans-serif-thin"/>
+	
+	
+		
+	    />
 
 	<Button
 	    android:id="@+id/loginButton"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignRight="@+id/password"
+	   
+	   	android:layout_centerHorizontal="true"
+	   	android:paddingLeft="10dip"
+		android:paddingRight="10dip"
+		android:layout_marginTop="5dip"
+
 	    android:layout_below="@+id/password"
-	    android:text="@string/loginText" />
+	    android:text="@string/loginText"
+	    android:drawableLeft="@drawable/sign_in"
+		android:background="@drawable/button_style"
+		android:fontFamily="sans-serif-thin" />
+	
+	<TextView 
+	    android:layout_width= "wrap_content"
+		android:layout_height= "wrap_content"
+		android:fontFamily="sans-serif-thin"
+		android:textSize="12sp"
+		android:text="@string/need_account"
+		android:layout_above="@id/signupButton"
+		android:layout_centerHorizontal="true"
+		 android:textColor="#fff"
+		 />
 
 </RelativeLayout>
