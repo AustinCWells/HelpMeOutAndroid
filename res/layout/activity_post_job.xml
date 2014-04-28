@@ -105,56 +105,45 @@
             android:text="@string/timeText"
             android:textSize="15sp" />
 
-        <HorizontalScrollView
-            android:id="@+id/timePickerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/time" >
 
-            <TimePicker
+
+            <Button
                 android:id="@+id/timePicker"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/time"
+                android:text="@string/timeText"
            
                 />
-        </HorizontalScrollView>
+
 
         <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/timePickerView"
+            android:layout_below="@id/timePicker"
             android:text="@string/dateText"
             android:textSize="15sp" />
 	
-        <HorizontalScrollView
-            android:id="@+id/datePickerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/date" >
-			<DatePicker
+
+		<Button
 	                android:id="@+id/datePicker"
-	                android:layout_width="wrap_content"
+	                android:layout_width="match_parent"
 	                android:layout_height="wrap_content"
-	                android:calendarViewShown="false"/>
+	                android:calendarViewShown="false"
+	                android:layout_below="@id/date"
+	                android:text="@string/dateText" />
 	           
 	           
-	            
-	        </HorizontalScrollView>
+
        
-		<LinearLayout  
-		    android:id="@+id/customDatePickerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-		    
-		</LinearLayout>
+
 		
         <TextView
             android:id="@+id/negotiable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/datePickerView"
+            android:layout_below="@id/datePicker"
             android:text="@string/negotiableText"
             android:textSize="15sp" 
             android:visibility="gone"/>
@@ -163,17 +152,9 @@
             android:id="@+id/negotiableSpinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/datePickerView"
+            android:layout_below="@id/datePicker"
             android:layout_toRightOf="@id/negotiable" 
             android:visibility="gone"/>
-
-        <Button
-            android:id="@+id/homeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/negotiableSpinner"
-            android:layout_toStartOf="@id/negotiable"
-            android:text="@string/homeText" />
 
         <Button
             android:id="@+id/submitButton"

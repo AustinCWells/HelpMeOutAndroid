@@ -42,9 +42,9 @@ public class PostJob extends ActionBarActivity {
 		setContentView(R.layout.activity_post_job);
 		mContext = this; 
 		
-		View child = getLayoutInflater().inflate(R.layout.custom_date_picker, null);
-		ViewGroup viewGroup = (ViewGroup) findViewById(R.id.customDatePickerView); 
-		viewGroup.addView(child);
+		//View child = getLayoutInflater().inflate(R.layout.custom_date_picker, null);
+		//ViewGroup viewGroup = (ViewGroup) findViewById(R.id.customDatePickerView); 
+		//viewGroup.addView(child);
 		
 		
 		Spinner categoriesSpinner = (Spinner) findViewById(R.id.categorySpinner);
@@ -61,34 +61,58 @@ public class PostJob extends ActionBarActivity {
 		ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(this, R.array.negotiable_array, android.R.layout.simple_spinner_item);
 		adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		negotiableSpinner.setAdapter(adapter3); 
-		Button homeButton = (Button) findViewById(R.id.homeButton);
 		Button submitButton = (Button) findViewById(R.id.submitButton);
-		homeButton.setOnClickListener(new View.OnClickListener() {
+		Button timeButton = (Button) findViewById(R.id.timePicker);
+		Button calendarButton = (Button) findViewById(R.id.datePicker);
+		calendarButton.setOnClickListener(new View.OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				getDate();
+				
+			}
+		});
+		timeButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				goHome();
+				getTime();
 				
 			}
+			
 		});
 		submitButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-			initiateJobSubmission(); 
+			//initiateJobSubmission(); 
 				
 			}
 		});
 	}
 	
+	public void getDate(){
+		  CalendarPicker.createAndShow(getFragmentManager());
+	}
+	
+	 public void onDateSelected(final int year, final int month, final int dayOfMonth) {
+	        Toast.makeText(this, dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
+	    }
+	 
+	public void getTime(){
+		 TaskTimePicker.createAndShow(getFragmentManager());
+	}
+	
+	 public void onTimeSelected(final int hour, final int minute) {
+	        Toast.makeText(this, hour + ":" + minute, Toast.LENGTH_LONG).show();
+	    }
+	
+    
+   
+	
 	private void initiateJobSubmission(){
 		new JobSubmitTask().execute("http://107.170.79.251/HelpMeOut/api/postatask");
 	}
 	
-	private void goHome(){
-		Intent intent = new Intent(this,HomePage.class);
-		startActivity(intent); 
-	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -156,7 +180,7 @@ public class PostJob extends ActionBarActivity {
 			EditText locationInput = (EditText) findViewById(R.id.meetingLocationInput);
 			EditText descriptionInput = (EditText) findViewById(R.id.descriptionInput);
 			EditText notesInput = (EditText) findViewById(R.id.notesInput);
-			TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
+			//TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
 			DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
 		
 			String category = new Integer(categorySpinner.getSelectedItemPosition()).toString();
@@ -165,7 +189,7 @@ public class PostJob extends ActionBarActivity {
 			String location = locationInput.getText().toString();
 			String description = descriptionInput.getText().toString();
 			String notes = notesInput.getText().toString();
-			String time = timePicker.getCurrentHour().toString() + ":" + timePicker.getCurrentMinute().toString(); 
+			//String time = timePicker.getCurrentHour().toString() + ":" + timePicker.getCurrentMinute().toString(); 
 			String date = Integer.toString(datePicker.getYear()) + "-" + Integer.toString(datePicker.getDayOfMonth()) + "-" + Integer.toString(datePicker.getDayOfMonth());
 			
 			HttpClient httpclient = new DefaultHttpClient();
@@ -180,8 +204,8 @@ public class PostJob extends ActionBarActivity {
 				json.put("description", description);
 				json.put("price", payment);
 				json.put("location", location);
-				json.put("deadlineDate", time);
-				json.put("deadlineTime", date);
+				//json.put("deadlineTime", time);
+				json.put("deadlineDate", date);
 				json.put("notes", notes);
 				StringEntity se = new StringEntity(json.toString());
 				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
