@@ -36,11 +36,18 @@ import android.widget.Toast;
 
 public class PostJob extends ActionBarActivity {
 	Context mContext;
+	private String selectedDate; 
+	private String selectedTime; 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_post_job);
 		mContext = this; 
+		selectedDate = "0000-00-00";
+		selectedTime = "00:00";
+				
+		
 		
 		//View child = getLayoutInflater().inflate(R.layout.custom_date_picker, null);
 		//ViewGroup viewGroup = (ViewGroup) findViewById(R.id.customDatePickerView); 
@@ -84,7 +91,7 @@ public class PostJob extends ActionBarActivity {
 			
 			@Override
 			public void onClick(View v) {
-			//initiateJobSubmission(); 
+			initiateJobSubmission(); 
 				
 			}
 		});
@@ -94,16 +101,40 @@ public class PostJob extends ActionBarActivity {
 		  CalendarPicker.createAndShow(getFragmentManager());
 	}
 	
-	 public void onDateSelected(final int year, final int month, final int dayOfMonth) {
-	        Toast.makeText(this, dayOfMonth + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
+	 public void onDateSelected(final Integer year, final Integer month, final Integer dayOfMonth) {
+
+	        selectedDate = year.toString();    
+	        selectedDate += "-";
+	        	     
+	        if(month < 10)
+	        	selectedDate += "0" + month.toString();
+	        else
+	        	selectedDate += month.toString(); 
+	        
+	        selectedDate += "-";
+	        
+	        if(dayOfMonth < 10)
+	        	selectedDate += "0" + dayOfMonth.toString(); 
+	        else
+	        	selectedDate += dayOfMonth.toString();
+	        
+	        
+	        Button dateButton = (Button) findViewById(R.id.datePicker); 
+	        dateButton.setText(selectedDate);
+   
+	        	
 	    }
 	 
 	public void getTime(){
 		 TaskTimePicker.createAndShow(getFragmentManager());
 	}
 	
-	 public void onTimeSelected(final int hour, final int minute) {
-	        Toast.makeText(this, hour + ":" + minute, Toast.LENGTH_LONG).show();
+	 public void onTimeSelected(final Integer hour, final Integer minute) {
+	      
+	        selectedTime = hour.toString() + ":" + minute.toString(); 
+ 
+	        Button timeButton = (Button) findViewById(R.id.timePicker); 
+	        timeButton.setText(selectedTime);
 	    }
 	
     
@@ -181,16 +212,16 @@ public class PostJob extends ActionBarActivity {
 			EditText descriptionInput = (EditText) findViewById(R.id.descriptionInput);
 			EditText notesInput = (EditText) findViewById(R.id.notesInput);
 			//TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
-			DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
+			//DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker);
 		
-			String category = new Integer(categorySpinner.getSelectedItemPosition()).toString();
+			String category = new Integer(categorySpinner.getSelectedItemPosition()+1).toString();
 			String userId = userIdString; 
 			String payment = new Integer(paymentSpinner.getSelectedItemPosition()+3).toString(); 
 			String location = locationInput.getText().toString();
 			String description = descriptionInput.getText().toString();
 			String notes = notesInput.getText().toString();
 			//String time = timePicker.getCurrentHour().toString() + ":" + timePicker.getCurrentMinute().toString(); 
-			String date = Integer.toString(datePicker.getYear()) + "-" + Integer.toString(datePicker.getDayOfMonth()) + "-" + Integer.toString(datePicker.getDayOfMonth());
+			//String date = Integer.toString(datePicker.getYear()) + "-" + Integer.toString(datePicker.getDayOfMonth()) + "-" + Integer.toString(datePicker.getDayOfMonth());
 			
 			HttpClient httpclient = new DefaultHttpClient();
 			HttpPost httppost = new HttpPost(urls[0]);
@@ -204,8 +235,8 @@ public class PostJob extends ActionBarActivity {
 				json.put("description", description);
 				json.put("price", payment);
 				json.put("location", location);
-				//json.put("deadlineTime", time);
-				json.put("deadlineDate", date);
+				json.put("deadlineTime", selectedTime);
+				json.put("deadlineDate", selectedDate);
 				json.put("notes", notes);
 				StringEntity se = new StringEntity(json.toString());
 				se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE,
