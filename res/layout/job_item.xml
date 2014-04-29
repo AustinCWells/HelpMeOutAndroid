@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/loading" />
+
+    <TextView
+        android:id="@+id/short_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/loading" />
+
+    <TextView
+        android:id="@+id/notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/loading" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/loading" />
+
+    <TextView
+        android:id="@+id/time_frame_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/loading" />
+
+    <TextView
+        android:id="@+id/time_frame_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/loading" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/loading" />
+
+    <Button
+        android:id="@+id/offerHelp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/offerHelp" />
+
+</LinearLayout>

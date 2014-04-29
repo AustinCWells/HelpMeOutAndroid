@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+	
+	<TextView 
+	    android:id="@+id/short_description"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    />
+	<TextView 
+	    android:id="@+id/price"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    /> 
+	    <TextView 
+	    android:id="@+id/location"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    /> 
+	    <TextView 
+	    android:id="@+id/chooser_name"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    /> 
+	   
+	    <TextView 
+	    android:id="@+id/chooser_speed"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    /> 
+	    <TextView 
+	    android:id="@+id/chooser_reliability"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    /> 
+	    <TextView 
+	    android:id="@+id/contact_number"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    /> 
+	    <TextView 
+	    android:id="@+id/notes"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    /> 
+	    <TextView 
+	    android:id="@+id/time_frame_time"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    /> 
+	    <TextView 
+	    android:id="@+id/time_frame_date"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    /> 
+	
+	    <Button
+	        android:id="@+id/completedButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/completed"/>
+	    	    <Button
+	        android:id="@+id/cancelButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/cancel"/>
+	    	    	    <Button
+	        android:id="@+id/acceptButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/accept"/>
+	    	    	    	    <Button
+	        android:id="@+id/declineButton"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/decline"/>
+	    
+
+</LinearLayout>

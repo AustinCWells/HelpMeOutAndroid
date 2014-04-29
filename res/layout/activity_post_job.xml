@@ -26,11 +26,16 @@
             android:textColor="#fff"/>
 
         <Spinner
+             android:layout_marginTop="10dip"
+             android:layout_marginLeft="5dip"
             android:id="@+id/categorySpinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/container"
-            android:layout_toRightOf="@id/categoryText" />
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/categoryText"
+             android:fontFamily="sans-serif-thin" 
+	    android:background="@drawable/input_style" 
+             />
 
         <TextView
             android:id="@+id/paymentAmount"
@@ -42,11 +47,15 @@
              android:textColor="#fff" />
 
         <Spinner
+            android:layout_marginLeft="5dip"
+             android:layout_marginTop="10dip"
             android:id="@+id/paymentAmountSpinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/categorySpinner"
-            android:layout_toRightOf="@id/paymentAmount" />
+            android:layout_toRightOf="@id/paymentAmount"
+             android:fontFamily="sans-serif-thin" 
+	    android:background="@drawable/input_style"  />
 
         <TextView
             android:id="@+id/meetingLocation"
@@ -58,12 +67,16 @@
              android:textColor="#fff" />
 
         <EditText
+            android:layout_marginLeft="5dip"
+             android:layout_marginTop="10dip"
             android:id="@+id/meetingLocationInput"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/paymentAmountSpinner"
             android:layout_toRightOf="@id/meetingLocation"
-            android:hint="@string/locationHint" />
+            android:hint="@string/locationHint"
+             android:fontFamily="sans-serif-thin" 
+	    android:background="@drawable/input_style"  />
 
         <TextView
             android:id="@+id/description"
@@ -75,12 +88,16 @@
              android:textColor="#fff" />
 
         <EditText
+            android:layout_marginLeft="5dip"
+             android:layout_marginTop="10dip"
             android:id="@+id/descriptionInput"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/meetingLocationInput"
             android:layout_toRightOf="@id/description"
-            android:hint="@string/descriptionHint" />
+            android:hint="@string/descriptionHint"
+             android:fontFamily="sans-serif-thin" 
+	    android:background="@drawable/input_style"  />
         <TextView
             android:id="@+id/notes"
             android:layout_width="wrap_content"
@@ -91,12 +108,16 @@
              android:textColor="#fff" />
         
          <EditText
+             android:layout_marginLeft="5dip"
+              android:layout_marginTop="10dip"
             android:id="@+id/notesInput"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/descriptionInput"
             android:layout_toRightOf="@id/notes"
-            android:hint="@string/descriptionHint" />
+            android:hint="@string/descriptionHint" 
+             android:fontFamily="sans-serif-thin" 
+	    android:background="@drawable/input_style" />
 
 
 
@@ -147,6 +168,7 @@
              android:textColor="#fff"/>
 
         <Spinner
+            android:layout_marginLeft="5dip"
             android:id="@+id/negotiableSpinner"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -162,7 +184,6 @@
             android:layout_below="@+id/negotiableSpinner"
             android:layout_alignParentRight="true"
             android:text="@string/submitText" 
-            android:drawableLeft="@drawable/money"
 			android:background="@drawable/button_style"
 			android:fontFamily="sans-serif-thin" />
     </RelativeLayout>

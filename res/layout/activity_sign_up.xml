@@ -1,0 +1,105 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2c3e50">
+<LinearLayout 
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.example.helpmeout.SignUp"
+    tools:ignore="MergeRootFrame" >
+
+
+
+
+	<EditText
+	     android:layout_margin="10dip"
+	    android:id="@+id/firstName"
+	    android:layout_width= "match_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/firstNameHint"
+	    android:inputType="textPersonName"
+	     android:background="@drawable/input_style"
+	       android:fontFamily="sans-serif-thin" />
+	<EditText
+	    android:layout_margin="10dip"
+	    android:id="@+id/lastName"
+	    android:layout_width= "match_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/lastNameHint"
+	    android:inputType="textPersonName"
+	     android:background="@drawable/input_style"
+	       android:fontFamily="sans-serif-thin" />
+	<Spinner 
+	    android:layout_margin="10dip"
+	    android:id="@+id/genderSpinner"
+	    android:layout_width= "match_parent"
+	    android:layout_height="wrap_content"
+	    android:background="@drawable/input_style"
+	      android:fontFamily="sans-serif-thin" 
+	    />
+	<EditText
+	    android:layout_margin="10dip"
+	    android:id="@+id/phoneNumber"
+	    android:layout_width= "match_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/phoneNumberHint"
+	    android:inputType="phone"
+	     android:background="@drawable/input_style" 
+	       android:fontFamily="sans-serif-thin" />
+	<EditText
+	    android:layout_margin="10dip"
+	    android:id="@+id/emailAddress"
+	    android:layout_width= "match_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/emailHint"
+	    android:inputType="textEmailAddress"
+	     android:background="@drawable/input_style"
+	       android:fontFamily="sans-serif-thin" />
+	<EditText
+	    android:layout_margin="10dip"
+	    android:id="@+id/password"
+	    android:layout_width= "match_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/passwordHint"
+	    android:inputType="textPassword"
+	     android:background="@drawable/input_style"
+	       android:fontFamily="sans-serif-thin" />
+	<EditText
+	    android:layout_margin="10dip"
+	    android:id="@+id/confirmPassword"
+	    android:layout_width= "match_parent"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/confirmPasswordHint"
+	    android:inputType="textPassword"
+	     android:background="@drawable/input_style"
+	       android:fontFamily="sans-serif-thin" />
+	
+	<LinearLayout 
+	   	android:layout_width="match_parent"
+   	 	android:layout_height="wrap_content"
+    	android:orientation="horizontal"  >
+	     <Button 
+		    android:id="@+id/backButton"
+		    android:text="@string/backText"
+		    android:layout_weight=".5"
+			android:layout_width= "0dip"
+			android:layout_height= "wrap_content"
+			 android:background="@drawable/button_style"
+			 android:layout_marginRight="5dip"/>
+	
+		 <Button
+		    android:id="@+id/signUpButton"
+		    android:layout_weight=".5"
+			android:layout_width= "0dip"
+		    android:layout_height="wrap_content"
+		    android:text="@string/signUpText"
+		     android:background="@drawable/button_style"
+		     android:layout_marginLeft="5dip" />
+	    
+	</LinearLayout>
+
+</LinearLayout> 
+</ScrollView>
