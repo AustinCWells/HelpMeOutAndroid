@@ -1,7 +1,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+     android:background="#2c3e50" >
 	<LinearLayout 
 	    android:layout_width="match_parent"
 	    android:layout_height="match_parent"
@@ -12,13 +13,7 @@
 	    android:orientation="vertical"
 	    tools:context="com.example.helpmeout.JobsAvailable">
 	    
-	    <TextView 
-		    android:id="@+id/header"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:textSize="25sp"
-		    android:layout_centerHorizontal= "true"
-		    android:text= "@string/header"/>
+
 	    
 	  
 	    <Button 
@@ -26,47 +21,82 @@
 		    android:text="@string/allJobsText"
 			android:layout_width= "fill_parent"
 			android:layout_height= "wrap_content"
-			android:visibility="gone"/>
+			android:visibility="gone"
+			  android:drawableLeft="@drawable/clock"
+			android:background="@drawable/button_style"
+			android:fontFamily="sans-serif-thin"/>
 	    <Button 
 		    android:id="@+id/foodJobsButton"
 		    android:text="@string/foodJobsText"
 			android:layout_width= "fill_parent"
-			android:layout_height= "wrap_content"/>
+			android:layout_height= "wrap_content"
+			android:layout_marginTop="10dip"
+			android:drawableLeft="@drawable/food"
+			android:background="@drawable/button_style"
+			android:fontFamily="sans-serif-thin"/>
 	     <Button 
 		    android:id="@+id/laundryJobsButton"
 		    android:text="@string/laundryJobsText"
 			android:layout_width= "fill_parent"
-			android:layout_height= "wrap_content"/>
+			android:layout_height= "wrap_content"
+			android:layout_marginTop="10dip"
+			android:drawableLeft="@drawable/laundry"
+			android:background="@drawable/button_style"
+			android:fontFamily="sans-serif-thin"/>
 	      <Button 
 		    android:id="@+id/groceryJobsButton"
 		    android:text="@string/groceryJobsText"
 			android:layout_width= "fill_parent"
-			android:layout_height= "wrap_content"/>
+			android:layout_height= "wrap_content"
+			android:layout_marginTop="10dip"
+			android:drawableLeft="@drawable/grocery"
+			android:background="@drawable/button_style"
+			android:fontFamily="sans-serif-thin"/>
 	       <Button 
 		    android:id="@+id/cleaningJobsButton"
 		    android:text="@string/cleaningJobsText"
 			android:layout_width= "fill_parent"
-			android:layout_height= "wrap_content"/>
+			android:layout_height= "wrap_content"
+			android:layout_marginTop="10dip"
+			android:drawableLeft="@drawable/cleaning"
+			android:background="@drawable/button_style"
+			android:fontFamily="sans-serif-thin"/>
 	        <Button 
 		    android:id="@+id/ridesJobsButton"
 		    android:text="@string/ridesJobsText"
 			android:layout_width= "fill_parent"
-			android:layout_height= "wrap_content"/>
+			android:layout_height= "wrap_content"
+			android:layout_marginTop="10dip"
+			android:drawableLeft="@drawable/rides"
+			android:background="@drawable/button_style"
+			android:fontFamily="sans-serif-thin"/>
 	         <Button 
 		    android:id="@+id/techSupportJobsButton"
 		    android:text="@string/techSupportJobsText"
 			android:layout_width= "fill_parent"
-			android:layout_height= "wrap_content"/>
+			android:layout_height= "wrap_content"
+			android:layout_marginTop="10dip"
+			android:drawableLeft="@drawable/tech_support"
+			android:background="@drawable/button_style"
+			android:fontFamily="sans-serif-thin"/>
 	          <Button 
 		    android:id="@+id/maintenanceJobsButton"
 		    android:text="@string/maintenanceJobsText"
 			android:layout_width= "fill_parent"
-			android:layout_height= "wrap_content"/>
+			android:layout_height= "wrap_content"
+			android:layout_marginTop="10dip"
+			android:drawableLeft="@drawable/maintenance"
+			android:background="@drawable/button_style"
+			android:fontFamily="sans-serif-thin"/>
 	    <Button 
 		    android:id="@+id/otherJobsButton"
 		    android:text="@string/otherJobsText"
 			android:layout_width= "fill_parent"
-			android:layout_height= "wrap_content"/>
+			android:layout_height= "wrap_content"
+			android:layout_marginTop="10dip"
+			android:drawableLeft="@drawable/other"
+			android:background="@drawable/button_style"
+			android:fontFamily="sans-serif-thin"/>
 	  
 	    
 	

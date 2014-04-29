@@ -101,21 +101,34 @@ public class DisplayAvailableJobs extends ActionBarActivity {
 		
 			Job job = jobs.get(position);
 			
-			nameView.setText("Name\n" + job.fName + " " + job.lName);
-			shortDescriptionView.setText("Description \n" + job.short_description);
-			notesView.setText("Note\n" + job.note);
-			priceView.setText("Price: " + job.price.toString());
-			timeFrameDateView.setText("Date Due By: " + job.time_frame_date);
-			timeFrameTimeView.setText("Time Due By: " + job.time_frame_time);
-			locationView.setText("Location: " + job.location);
+			nameView.setText(" " + job.fName + " " + job.lName);
+			shortDescriptionView.setText(job.short_description);
+			notesView.setText(job.note);
+			priceView.setText(" $" + job.price.toString());
+			timeFrameDateView.setText(" " + job.time_frame_date + " by " + job.time_frame_time);
+			locationView.setText(" " + job.location);
 			
 			Button helpButton = (Button) v.findViewById(R.id.offerHelp);
 			final String taskId = job.task_id.toString();
+			final String userID = HomePage.mUserId;
+			final String posterID = job.posterID;
+			
+			helpButton.setVisibility(View.VISIBLE);
+			if(userID.equals(posterID)){
+				helpButton.setVisibility(View.GONE);
+			}
 			helpButton.setOnClickListener(null);
 			helpButton.setOnClickListener(new View.OnClickListener() {
 				
 				@Override
 				public void onClick(View v) {
+					Log.i("ACW","Ids are " + userID + " " + posterID);
+					if(userID.equals(posterID)){
+						int duration = Toast.LENGTH_SHORT;
+						Toast toast = Toast.makeText(context, "You cannot accept your own job", duration);
+						toast.show();	
+						return; 
+					}
 					new OfferHelpTask().execute(taskId); 
 				}
 			});

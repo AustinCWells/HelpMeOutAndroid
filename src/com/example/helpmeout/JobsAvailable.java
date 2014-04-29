@@ -187,6 +187,7 @@ public class JobsAvailable extends ActionBarActivity {
 							.getString("time_frame_date");
 					String time_frame_time = currentJob
 							.getString("time_frame_time");
+					String posterID = "1"; //currentJob.getString(""); 
 					String location = currentJob.getString("location");
 					Log.i("ACW", "The item: " + task_id.toString() + " "
 							+ fName + " " + lName + " " + short_description
@@ -195,7 +196,7 @@ public class JobsAvailable extends ActionBarActivity {
 							+ location);
 					mJobs.add(new Job(task_id, fName, lName, short_description,
 							note, price, time_frame_date, time_frame_time,
-							location));
+							location, posterID));
 
 				}
 				Log.i("ACW", "let's just see if anything crashes!");
@@ -271,10 +272,11 @@ public class JobsAvailable extends ActionBarActivity {
 		String time_frame_date;
 		String time_frame_time;
 		String location;
+		String posterID; 
 
 		Job(Integer task_id, String fName, String lName,
 				String short_description, String note, Integer price,
-				String time_frame_date, String time_frame_time, String location) {
+				String time_frame_date, String time_frame_time, String location, String posterID) {
 			this.task_id = task_id;
 			this.fName = fName;
 			this.lName = lName;
@@ -284,6 +286,7 @@ public class JobsAvailable extends ActionBarActivity {
 			this.time_frame_date = time_frame_date;
 			this.time_frame_time = time_frame_time;
 			this.location = location;
+			this.posterID = posterID; 
 
 		}
 	}
