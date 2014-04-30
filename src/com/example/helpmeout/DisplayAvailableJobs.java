@@ -102,6 +102,7 @@ public class DisplayAvailableJobs extends ActionBarActivity {
 			Job job = jobs.get(position);
 			
 			nameView.setText(" " + job.fName + " " + job.lName);
+			Log.i("ACW",job.short_description);
 			shortDescriptionView.setText(job.short_description);
 			notesView.setText(job.note);
 			priceView.setText(" $" + job.price.toString());

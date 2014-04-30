@@ -2,80 +2,180 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2c3e50"
     android:orientation="vertical" >
 	
-	<TextView 
-	    android:id="@+id/short_description"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    />
-	<TextView 
-	    android:id="@+id/price"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    /> 
-	    <TextView 
-	    android:id="@+id/location"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    /> 
-	    <TextView 
-	    android:id="@+id/chooser_name"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    /> 
-	   
-	    <TextView 
-	    android:id="@+id/chooser_speed"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    /> 
-	    <TextView 
-	    android:id="@+id/chooser_reliability"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    /> 
-	    <TextView 
-	    android:id="@+id/contact_number"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    /> 
-	    <TextView 
-	    android:id="@+id/notes"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    /> 
-	    <TextView 
-	    android:id="@+id/time_frame_time"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    /> 
-	    <TextView 
-	    android:id="@+id/time_frame_date"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    /> 
+
+   
+    <TextView
+        android:id="@+id/short_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loading"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/money_white"
+        android:drawablePadding="5dip"
+        android:gravity="center_vertical"
+        android:text="@string/loading"
+        android:textColor="#fff"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/map_white"
+        android:drawablePadding="5dip"
+        android:gravity="center_vertical"
+        android:text="@string/loading"
+        android:textColor="#fff"
+        android:textSize="15sp" />
+    
+     <TextView
+        android:id="@+id/helper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/help_white"
+        android:drawablePadding="5dip"
+        android:gravity="center_vertical"
+        android:text="@string/loading"
+        android:textColor="#fff"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/chooser_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/profile_white"
+        android:drawablePadding="5dip"
+        android:gravity="center_vertical"
+        android:text="@string/loading"
+        android:textColor="#fff"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/chooser_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+         android:drawableLeft="@drawable/speed_white"
+        android:text="@string/loading"
+         android:drawablePadding="5dip"
+        android:textColor="#fff"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/chooser_reliability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:drawableLeft="@drawable/reliability_white"
+        android:gravity="center_vertical"
+         android:drawablePadding="5dip"
+        android:text="@string/loading"
+        android:textColor="#fff"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/contact_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/phone_white"
+        android:drawablePadding="5dip"
+        android:gravity="center_vertical"
+        android:text="@string/loading"
+        android:textColor="#fff"
+        android:textSize="15sp" />
+    
+      <TextView
+        android:id="@+id/time_frame_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/clock_white"
+        android:drawablePadding="5dip"
+        android:gravity="center_vertical"
+        android:text="@string/loading"
+        android:textColor="#fff"
+        android:textSize="15sp" />
 	
-	    <Button
-	        android:id="@+id/completedButton"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/completed"/>
-	    	    <Button
-	        android:id="@+id/cancelButton"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/cancel"/>
-	    	    	    <Button
-	        android:id="@+id/acceptButton"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/accept"/>
-	    	    	    	    <Button
-	        android:id="@+id/declineButton"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="@string/decline"/>
-	    
+      <TextView
+        android:id="@+id/notesTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/location"
+        android:paddingLeft="25dip"
+        android:text="Notes"
+        android:textColor="#fff"
+        android:textSize="25sp" />
+      
+    <TextView
+        android:id="@+id/notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+           android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:background="@drawable/notes_style"
+        android:padding="15dip"
+        android:text="@string/loading"
+        android:textColor="#000"
+        android:textSize="15sp"  />
+
+  
+	<RelativeLayout 
+	     android:layout_width="match_parent"
+        android:layout_height="match_parent"
+	    >
+    <Button
+        android:id="@+id/completedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/button_style"
+        android:text="@string/completed" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/button_style"
+        android:text="@string/cancel"
+        android:layout_alignParentRight="true" />
+
+    <Button
+        android:id="@+id/acceptButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/button_style"
+        android:text="@string/accept" />
+
+    <Button
+        android:id="@+id/declineButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/button_style"
+        android:text="@string/decline" 
+        android:layout_alignParentRight="true"/>
+    
+    </RelativeLayout>
 
 </LinearLayout>

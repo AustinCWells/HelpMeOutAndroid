@@ -174,7 +174,7 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 		 * the result from doInBackground()
 		 */
 		protected void onPostExecute(String userInformation) {
-
+			Log.i("ACW","Information for jobs I need done " + userInformation.toString());
 			try {
 
 				mJobsINeedDone = new JSONArray(userInformation);
@@ -254,7 +254,7 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 			for (int i = 0; i < jobs.length(); i++) {
 
 				JSONObject currentJob = jobs.getJSONObject(i);
-
+				Log.i("ACW2",currentJob.toString());
 				int intOffer = currentJob.getInt("is_offer_for_help");
 				boolean is_offer_for_help;
 
@@ -375,28 +375,29 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 			TextView chooserSpeedView = (TextView) v.findViewById(R.id.chooser_speed);
 			TextView chooserReliabilityView = (TextView) v.findViewById(R.id.chooser_reliability);
 			TextView notesView = (TextView) v.findViewById(R.id.notes);
-			TextView timeFrameTimeView = (TextView) v.findViewById(R.id.time_frame_time);
 			TextView timeFrameDateView = (TextView) v.findViewById(R.id.time_frame_date);
+			TextView notesTitle = (TextView) v.findViewById(R.id.notesTitle);
 			Button completedButton = (Button) v.findViewById(R.id.completedButton);
 			Button cancelButton = (Button) v.findViewById(R.id.cancelButton);
 			Button acceptButton = (Button) v.findViewById(R.id.acceptButton);
 			Button declineButton = (Button) v.findViewById(R.id.declineButton); 
 			
 			final JobINeedDone job = mAdapterJobs.get(position);
-			shortDescriptionView.setText(job.short_description);
-			priceView.setText(job.price.toString());
+			
+			priceView.setText("$" + job.price.toString() + ".00");
 			if (job.is_offer_for_help) {
+				shortDescriptionView.setText("OFFER: " + job.short_description);
+				notesTitle.setVisibility(View.GONE);
 				chooserNameView.setVisibility(View.VISIBLE);
 				chooserNameView.setText(job.chooser_fName + " "+ job.chooser_lName);
 				chooserSpeedView.setVisibility(View.VISIBLE);
-				chooserSpeedView.setText(job.chooser_speed);
+				chooserSpeedView.setText("Speed: " + job.chooser_speed + "/100");
 				chooserReliabilityView.setVisibility(View.VISIBLE);
-				chooserReliabilityView.setText(job.chooser_reliability);
+				chooserReliabilityView.setText("Reliability: " + job.chooser_reliability + "/100");
 				contactNumberView.setVisibility(View.VISIBLE);
 				contactNumberView.setText("985-502-1061");
 				locationView.setVisibility(View.GONE);
 				notesView.setVisibility(View.GONE);
-				timeFrameTimeView.setVisibility(View.GONE);
 				timeFrameDateView.setVisibility(View.GONE);
 				completedButton.setVisibility(View.GONE);
 				cancelButton.setVisibility(View.GONE);
@@ -404,14 +405,14 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 				declineButton.setVisibility(View.VISIBLE); 
 
 			} else {
+				shortDescriptionView.setText(job.short_description);
+				notesTitle.setVisibility(View.VISIBLE);
 				locationView.setVisibility(View.VISIBLE);
-				locationView.setText("Location: " + job.location);
+				locationView.setText(job.location);
 				notesView.setVisibility(View.VISIBLE);
 				notesView.setText(job.notes);
 				timeFrameDateView.setVisibility(View.VISIBLE);
-				timeFrameTimeView.setText(job.time_frame_time);
-				timeFrameTimeView.setVisibility(View.VISIBLE);
-				timeFrameDateView.setText(job.time_frame_date);
+				timeFrameDateView.setText("due by " + job.time_frame_date + " at " + job.time_frame_time);
 				chooserNameView.setVisibility(View.GONE);
 				chooserSpeedView.setVisibility(View.GONE);
 				chooserReliabilityView.setVisibility(View.GONE);
