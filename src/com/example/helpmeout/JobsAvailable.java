@@ -8,8 +8,11 @@ import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -216,11 +219,18 @@ public class JobsAvailable extends ActionBarActivity {
 		@Override
 		protected String doInBackground(String... urls) {
 			HttpClient httpclient = new DefaultHttpClient();
-			HttpGet httppost = new HttpGet(urls[0]);
+			HttpPost httppost = new HttpPost(urls[0]);
 			HttpResponse response = null;
 			HttpEntity entity = null;
+			JSONObject json = new JSONObject(); 
 			try {
 				// Execute HTTP Post Request
+				json.put("user_id", HomePage.mUserId);
+				StringEntity se = new StringEntity( json.toString()); 
+		 		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));
+		 		httppost.setEntity(se); 
+		 		
+		 		//execute HTTP post request
 				response = httpclient.execute(httppost);
 				entity = response.getEntity();
 			} catch (ClientProtocolException e) {

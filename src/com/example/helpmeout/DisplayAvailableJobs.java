@@ -95,7 +95,7 @@ public class DisplayAvailableJobs extends ActionBarActivity {
 			TextView notesView = (TextView) v.findViewById(R.id.notes);
 			TextView priceView = (TextView) v.findViewById(R.id.price);
 			TextView timeFrameDateView = (TextView) v.findViewById(R.id.time_frame_date);
-			TextView timeFrameTimeView = (TextView) v.findViewById(R.id.time_frame_time);
+			//TextView timeFrameTimeView = (TextView) v.findViewById(R.id.time_frame_time);
 			TextView locationView = (TextView) v.findViewById(R.id.location);
 			 
 		
@@ -105,8 +105,8 @@ public class DisplayAvailableJobs extends ActionBarActivity {
 			Log.i("ACW",job.short_description);
 			shortDescriptionView.setText(job.short_description);
 			notesView.setText(job.note);
-			priceView.setText(" $" + job.price.toString());
-			timeFrameDateView.setText(" " + job.time_frame_date + " by " + job.time_frame_time);
+			priceView.setText(" $" + job.price.toString() + ".00");
+			timeFrameDateView.setText("Due on " + job.time_frame_date + " at " + job.time_frame_time);
 			locationView.setText(" " + job.location);
 			
 			Button helpButton = (Button) v.findViewById(R.id.offerHelp);

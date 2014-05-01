@@ -5,12 +5,15 @@
     android:layout_height="match_parent"
     tools:context="com.example.helpmeout.TaskComplete"
     tools:ignore="MergeRootFrame"
-    android:orientation= "vertical" >
+    android:orientation= "vertical"
+    android:background="#2c3e50" >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/reliability" />
+        android:text="@string/reliability"
+         android:textColor="#fff"
+        android:textSize="20sp"  />
 
     <RatingBar
         android:id="@+id/reliabilityRating"
@@ -20,7 +23,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/speed" />
+        android:text="@string/speed" 
+         android:textColor="#fff"
+        android:textSize="20sp" />
 
     <RatingBar
         android:id="@+id/speedRating"
@@ -29,8 +34,13 @@
 
     <Button
         android:id="@+id/submitButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/submitText" />
+        android:text="@string/submitText" 
+          android:layout_marginBottom="10dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="10dip"
+        android:background="@drawable/button_style"/>
     
     </LinearLayout>

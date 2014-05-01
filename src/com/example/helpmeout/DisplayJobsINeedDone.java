@@ -215,6 +215,7 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 		String time_frame_date;
 		String is_custom;
 		String custom_image_path;
+		String contact_number;
 
 		JobINeedDone(boolean is_offer_for_help, Integer offer_id,
 				Integer task_id, Integer begger_id, Integer price,
@@ -223,7 +224,7 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 				String chooser_lName, String chooser_speed,
 				String chooser_reliability, String notes,
 				String time_frame_time, String time_frame_date,
-				String is_custom, String custom_image_path) {
+				String is_custom, String custom_image_path, String contact_number) {
 
 			this.is_offer_for_help = is_offer_for_help;
 			this.offer_id = offer_id;
@@ -244,6 +245,7 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 			this.time_frame_date = time_frame_date;
 			this.is_custom = is_custom;
 			this.custom_image_path = custom_image_path;
+			this.contact_number = contact_number;
 
 		}
 	}
@@ -276,6 +278,8 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 				String time_frame_date;
 				String is_custom;
 				String custom_image_path;
+				String contact_number; 
+				String contact_email;
 
 				if (intOffer == 0)
 					is_offer_for_help = false;
@@ -295,47 +299,63 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 					location = currentJob.getString("location");
 					notes = currentJob.getString("notes");
 					offer_id = -1;
-					chooser_id = -1;
-					chooser_fName = "N/A";
-					chooser_lName = "N/A";
+					chooser_id = currentJob.getInt("chooser_id");
+					
 					chooser_speed = "N/A";
 					chooser_reliability = "N/A";
 					is_custom = "N/A";
 					custom_image_path = "N/A";
+					if(chooser_id != 0){
+						chooser_fName = currentJob.getString("chooser_fName");
+						chooser_lName = currentJob.getString("chooser_lName");
+						contact_number = currentJob.getString("contact_phone");
+						contact_email = currentJob.getString("contact_email");
+					}
+					else {
+						chooser_fName = "N/A";
+						chooser_lName = "N/A";
+						contact_number = "N/A"; 
+						contact_email = "N/A"; 
+					}
+					
 				} else {
+					chooser_fName = currentJob.getString("chooser_fName");
+					chooser_lName = currentJob.getString("chooser_lName");
+					contact_number = "N/A"; 
+					contact_email = "N/A"; 
 					location = "N/A";
 					notes = "N/A";
 					offer_id = currentJob.getInt("offer_id");
 					chooser_id = currentJob.getInt("chooser_id");
-					chooser_fName = currentJob.getString("chooser_fName");
-					chooser_lName = currentJob.getString("chooser_lName");
+					
 					chooser_speed = currentJob.getString("chooser_speed");
+				
 					chooser_reliability = currentJob
 							.getString("chooser_reliability");
 					is_custom = currentJob.getString("is_custom");
 					custom_image_path = currentJob
 							.getString("custom_image_path");
 				}
-//				Log.i("ACW",
-//						"Adding! " + "New: " + offer_id.toString() + "New: "
-//								+ task_id.toString() + "New: "
-//								+ begger_id.toString() + "New: "
-//								+ price.toString() + "New: " + category_id.toString()
-//								+ "New: " + short_description + "New: "
-//								+ location + "New: " + date_posted + "New: "
-//								+ chooser_id.toString() + "New: "
-//								+ chooser_fName + "New: " + chooser_lName
-//								+ "New: " + chooser_speed + "New: "
-//								+ chooser_reliability + "New: " + notes
-//								+ "New: " + time_frame_time + "New: "
-//								+ time_frame_date + "New: " + is_custom
-//								+ "New: " + custom_image_path);
+				Log.i("ACW",
+						"Adding! " + "New: " + offer_id.toString() + "New: "
+								+ task_id.toString() + "New: "
+								+ begger_id.toString() + "New: "
+								+ price.toString() + "New: " + category_id.toString()
+								+ "New: " + short_description + "New: "
+								+ location + "New: " + date_posted + "New: "
+								+ chooser_id.toString() + "New: "
+								+ chooser_fName + "New: " + chooser_lName
+								+ "New: " + chooser_speed + "New: "
+								+ chooser_reliability + "New: " + notes
+								+ "New: " + time_frame_time + "New: "
+								+ time_frame_date + "New: " + is_custom
+								+ "New: " + custom_image_path);
 				mJobs.add(new JobINeedDone(is_offer_for_help, offer_id,
 						task_id, begger_id, price, category_id,
 						short_description, location, date_posted, chooser_id,
 						chooser_fName, chooser_lName, chooser_speed,
 						chooser_reliability, notes, time_frame_time,
-						time_frame_date, is_custom, custom_image_path));
+						time_frame_date, is_custom, custom_image_path, contact_number));
 
 			}
 		} catch (JSONException e) {
@@ -377,6 +397,7 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 			TextView notesView = (TextView) v.findViewById(R.id.notes);
 			TextView timeFrameDateView = (TextView) v.findViewById(R.id.time_frame_date);
 			TextView notesTitle = (TextView) v.findViewById(R.id.notesTitle);
+			TextView helperTitle = (TextView) v.findViewById(R.id.helper);
 			Button completedButton = (Button) v.findViewById(R.id.completedButton);
 			Button cancelButton = (Button) v.findViewById(R.id.cancelButton);
 			Button acceptButton = (Button) v.findViewById(R.id.acceptButton);
@@ -386,6 +407,7 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 			
 			priceView.setText("$" + job.price.toString() + ".00");
 			if (job.is_offer_for_help) {
+				helperTitle.setVisibility(View.GONE);
 				shortDescriptionView.setText("OFFER: " + job.short_description);
 				notesTitle.setVisibility(View.GONE);
 				chooserNameView.setVisibility(View.VISIBLE);
@@ -405,7 +427,8 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 				declineButton.setVisibility(View.VISIBLE); 
 
 			} else {
-				shortDescriptionView.setText(job.short_description);
+				helperTitle.setVisibility(View.VISIBLE);
+								shortDescriptionView.setText(job.short_description);
 				notesTitle.setVisibility(View.VISIBLE);
 				locationView.setVisibility(View.VISIBLE);
 				locationView.setText(job.location);
@@ -416,11 +439,24 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 				chooserNameView.setVisibility(View.GONE);
 				chooserSpeedView.setVisibility(View.GONE);
 				chooserReliabilityView.setVisibility(View.GONE);
-				contactNumberView.setVisibility(View.GONE);
-				completedButton.setVisibility(View.VISIBLE);
+				
 				cancelButton.setVisibility(View.VISIBLE);
 				acceptButton.setVisibility(View.GONE);
 				declineButton.setVisibility(View.GONE); 
+				
+				//If someone is helping
+				if(job.chooser_id != 0)
+				{
+					completedButton.setVisibility(View.VISIBLE);;
+					helperTitle.setText(job.chooser_fName + " " + job.chooser_lName + " is helping you");
+					contactNumberView.setVisibility(View.VISIBLE);
+					contactNumberView.setText(job.contact_number);
+				} else {
+					completedButton.setVisibility(View.GONE);;
+					helperTitle.setText("No one is helping you");
+					contactNumberView.setVisibility(View.GONE);
+				}
+					
 				
 			}
 			final Integer taskForEvent = job.task_id; 
@@ -452,6 +488,7 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 					mCurrentId = chooserId;
 					mTaskId = taskId; 
 					new AcceptDeclineCancelJobTask().execute("http://107.170.79.251/HelpMeOut/api/acceptOffer");
+					currentContext.remove(job);
 					int duration = Toast.LENGTH_LONG;
 					String message = "You accepted " + helpersName + "'s offer for help!";
 					Toast toast;   
@@ -468,8 +505,9 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 					mCurrentId = chooserId;
 					mTaskId = taskId; 
 					new AcceptDeclineCancelJobTask().execute("http://107.170.79.251/HelpMeOut/api/declineOffer");
+					currentContext.remove(job);
 					int duration = Toast.LENGTH_LONG;
-					String message = "You've declined" + helpersName + "'s offer for help!";
+					String message = "You've declined " + helpersName + "'s offer for help!";
 					Toast toast;   
 			    	toast = Toast.makeText(mContext, message , duration);
 				    toast.show();

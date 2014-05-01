@@ -1,15 +1,10 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/myListView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#2c3e50"
     tools:context="com.example.helpmeout.DisplayJobsImDoing"
     tools:ignore="MergeRootFrame" >
 
-    <ListView
-        android:id="@+id/myListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    </ListView>
-
-</RelativeLayout>
+</ListView>

@@ -21,6 +21,7 @@
     <string name="title_activity_calendar_activity">Calendar</string>
     <string name="title_activity_calendar_picker">Pick Date</string>
 	<string name="need_account">Need an account? Sign up now!</string>
+	<string name="notes">Notes</string>
     <string-array name="jobCategories">
         <item>Food</item>
         <item>Rides</item>

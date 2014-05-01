@@ -8,6 +8,7 @@
           
            <padding
         android:left="10dip"
+        android:right="10dip"
      
      	 />
        

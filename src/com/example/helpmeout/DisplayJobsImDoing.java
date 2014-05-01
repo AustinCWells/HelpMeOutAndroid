@@ -233,7 +233,7 @@ public class DisplayJobsImDoing extends ActionBarActivity {
 			TextView shortDescriptionView = (TextView) v.findViewById(R.id.short_description); 
 			TextView priceView = (TextView) v.findViewById(R.id.price); 
 			TextView timeFrameDateView = (TextView) v.findViewById(R.id.time_frame_date); 
-			TextView timeFrameTimeView = (TextView) v.findViewById(R.id.time_frame_time); 
+			//TextView timeFrameTimeView = (TextView) v.findViewById(R.id.time_frame_time); 
 			TextView locationView = (TextView) v.findViewById(R.id.location); 
 			TextView notesView = (TextView) v.findViewById(R.id.notes); 
 			
@@ -243,8 +243,8 @@ public class DisplayJobsImDoing extends ActionBarActivity {
 			contactNumberView.setText("\nContact Number: " + job.contact_number);
 			shortDescriptionView.setText("\nDescription: " + job.short_description);
 			priceView.setText("\nPrice: $" + job.price.toString() + ".00");
-			timeFrameDateView.setText("End Date: " + job.time_frame_date );
-			timeFrameTimeView.setText("End Time: " + job.time_frame_time);
+			timeFrameDateView.setText("Due by " + job.time_frame_date + " at " + job.time_frame_time);
+			//timeFrameTimeView.setText("End Time: " + job.time_frame_time);
 			locationView.setText("Location: " + job.location); 
 			notesView.setText("\nNotes: " + job.notes);
 

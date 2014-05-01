@@ -100,7 +100,8 @@
 		android:layout_height= "wrap_content"
 		android:drawableLeft="@drawable/profile"
 		android:background="@drawable/button_style"
-		android:fontFamily="sans-serif-thin"/>
+		android:fontFamily="sans-serif-thin"
+		android:visibility="gone"/>
      <Button 
          android:layout_marginTop="5dip"
 	    android:id="@+id/signOutButton"
