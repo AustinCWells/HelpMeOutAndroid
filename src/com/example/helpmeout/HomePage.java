@@ -2,6 +2,7 @@ package com.example.helpmeout;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Scanner;
 
 import org.apache.http.HttpEntity;
@@ -20,6 +21,8 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -28,6 +31,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class HomePage extends ActionBarActivity {
@@ -229,14 +233,28 @@ public class HomePage extends ActionBarActivity {
 				String fName = object.getString("first_name");
 				String lName = object.getString("last_name");
 				String tokens = object.getString("tokens");
-				String email = object.getString("email"); 
+				Integer jobsCompleted = object.getInt("jobs_completed"); 
+				Integer imageIsCustom = object.getInt("is_custom");
+				String imagePath = object.getString("custom_image_path"); 
+				Integer speed = object.getInt("speed"); 
+				Integer reliability = object.getInt("reliability"); 
+				
+				if(imageIsCustom == 1){
+					new getProfileImageTask().execute(imagePath);
+				}
+					
+				
+				TextView speedView = (TextView) findViewById(R.id.speed);
+				TextView reliabilityView = (TextView) findViewById(R.id.reliability);
 				TextView nameView = (TextView) findViewById(R.id.name);
 				TextView tokensView = (TextView) findViewById(R.id.tokens);
-				TextView emailView = (TextView) findViewById(R.id.email);
+				TextView jobsCompletedView = (TextView) findViewById(R.id.jobsCompleted);
 
-				nameView.setText("Name: " + fName + " " + lName);
+				speedView.setText("Speed: " + speed.toString() + "/100");
+				reliabilityView.setText("Reliability: " + reliability.toString() + "/100"); 
+				nameView.setText(fName + " " + lName);
 				tokensView.setText("Tokens: " + tokens);
-				emailView.setText("Email: " + email);
+				jobsCompletedView.setText( jobsCompleted.toString() + " Jobs Completed");
 				// #TODO update with rating info not user info
 
 			} catch (JSONException e) {
@@ -246,6 +264,8 @@ public class HomePage extends ActionBarActivity {
 
 			return;
 		}
+		
+
 
 		private String getUserId() {
 			Log.i("ACW", "getting users ID");
@@ -255,6 +275,7 @@ public class HomePage extends ActionBarActivity {
 			return id;
 		}
 	}
+	
 
 	private static String getResponseText(InputStream stream) {
 		// shortcut for getting entire stream:
@@ -264,5 +285,45 @@ public class HomePage extends ActionBarActivity {
 		scanner.close();
 		return result;
 	}
+	
+	private class getProfileImageTask extends AsyncTask<String, Void, Bitmap> {
 
+	
+		/**
+		 * The system calls this to perform work in a worker thread and delivers
+		 * it the parameters given to AsyncTask.execute()
+		 */
+		protected Bitmap doInBackground(String... imagePath) {
+			Log.i("ACW","Custom image loading!");
+			
+			return getImage("http://107.170.79.251/HelpMeOut/img/user/" + imagePath[0]); 
+			
+		}
+
+		/**
+		 * The system calls this to perform work in the UI thread and delivers
+		 * the result from doInBackground()
+		 */
+		protected void onPostExecute(Bitmap result) {
+			ImageView profileImageView = (ImageView) findViewById(R.id.profileImage);
+			profileImageView.setImageBitmap(result);
+			return;
+		}
+
+		public Bitmap getImage(String imgUrl) {
+			Bitmap img = null;
+			URL url;
+
+			try {
+				url = new URL(imgUrl);
+				img = BitmapFactory.decodeStream(url.openStream());
+			} catch (IOException e) {
+				Log.e("ACW", "Failed to decode Bitmap");
+				e.printStackTrace();
+			}
+			
+			return img;
+
+		}
+	}
 }

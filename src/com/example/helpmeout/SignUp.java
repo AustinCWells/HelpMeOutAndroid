@@ -125,7 +125,7 @@ public class SignUp extends ActionBarActivity {
 		
 		 new SignUpUserTask().execute("http://107.170.79.251/HelpMeOut/api/newaccount");
 		 
-	    toast = Toast.makeText(context, "Login Acount Created", duration);
+	    toast = Toast.makeText(context, "Creating account!", duration);
 		toast.show();
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
@@ -165,6 +165,11 @@ public class SignUp extends ActionBarActivity {
 	    /** The system calls this to perform work in the UI thread and delivers
 	      * the result from doInBackground() */
 	    protected void onPostExecute(String result) {
+	    	if(result.contains("error")){
+	    		result = "an account with this email already exists"; 
+	    	} else {
+	    		result = "account created";
+	    	}
 	    	Log.i("THREAD","Thread executed"); 
 	    	Context context = getApplicationContext();
 			int duration = Toast.LENGTH_SHORT;
