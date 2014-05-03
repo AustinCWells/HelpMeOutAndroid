@@ -132,9 +132,11 @@ public class DisplayJobsImDoing extends ActionBarActivity {
 				mJobsImDoing =  new JSONArray(userInformation); 
 				loadJobs(mJobsImDoing);
 				
+				TextView noJobs = (TextView) findViewById(R.id.noJobs);
 				if(mJobs.size() > 0){
-					TextView noJobs = (TextView) findViewById(R.id.noJobs);
 					noJobs.setVisibility(View.GONE);
+				} else {
+					noJobs.setVisibility(View.VISIBLE);
 				}
 				
 				JobsImDoingAdapter adapter = new JobsImDoingAdapter(mContext, mJobs); 
@@ -164,7 +166,7 @@ public class DisplayJobsImDoing extends ActionBarActivity {
 				String time_frame_time = currentJob.getString("time_frame_time");
 				String location = currentJob.getString("location");
 				String notes = currentJob.getString("notes"); 
-				Log.i("ACW","Adding job: " + "1: " + name + " 2: " + job_id.toString() + " 3:" + contact_number + " 4:" + short_description + " 5: " + price.toString() + " 6: " + time_frame_date + " 7: " + time_frame_time + " 8: " + location + " :)" + notes); 
+				Log.i("ACW3","Adding job: " + "1: " + name + " 2: " + job_id.toString() + " 3:" + contact_number + " 4:" + short_description + " 5: " + price.toString() + " 6: " + time_frame_date + " 7: " + time_frame_time + " 8: " + location + " :)" + notes); 
 				mJobs.add(new JobImDoing(name,job_id,contact_number,contact_email,short_description,price,time_frame_date,time_frame_time,location,notes)); 
 			}
 		} catch (JSONException e) {
@@ -245,14 +247,16 @@ public class DisplayJobsImDoing extends ActionBarActivity {
 			
 			final JobImDoing job = mAdapterJobs.get(position); 
 			
-			nameView.setText("\nName: " + job.name);
-			contactNumberView.setText("\nContact Number: " + job.contact_number);
-			shortDescriptionView.setText("\nDescription: " + job.short_description);
-			priceView.setText("\nPrice: $" + job.price.toString() + ".00");
+			
+			
+			nameView.setText(job.name);
+			contactNumberView.setText(job.contact_number);
+			shortDescriptionView.setText( job.short_description);
+			priceView.setText("$" + job.price.toString() + ".00");
 			timeFrameDateView.setText("Due by " + job.time_frame_date + " at " + job.time_frame_time);
 			//timeFrameTimeView.setText("End Time: " + job.time_frame_time);
-			locationView.setText("Location: " + job.location); 
-			notesView.setText("\nNotes: " + job.notes);
+			locationView.setText(job.location); 
+			notesView.setText(job.notes);
 
 			
 			final String chooserId = HomePage.mUserId;

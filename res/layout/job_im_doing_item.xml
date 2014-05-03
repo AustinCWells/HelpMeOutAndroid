@@ -15,60 +15,65 @@
 
     <TextView
         android:id="@+id/name"
-        android:layout_width="match_parent"
+         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/profile_white"
         android:drawablePadding="5dip"
         android:gravity="center_vertical"
         android:text="@string/loading"
         android:textColor="#fff"
-        android:textSize="15sp" />
+        android:textSize="15sp" 
+         android:paddingTop="5dip"/>
 
     <TextView
         android:id="@+id/contact_number"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/phone_white"
         android:drawablePadding="5dip"
         android:gravity="center_vertical"
         android:text="@string/loading"
         android:textColor="#fff"
-        android:textSize="15sp" />
+        android:textSize="15sp" 
+         android:paddingTop="5dip"
+       	/>
 
     <TextView
         android:id="@+id/price"
-        android:layout_width="match_parent"
+         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/money_white"
         android:drawablePadding="5dip"
         android:gravity="center_vertical"
         android:text="@string/loading"
         android:textColor="#fff"
-        android:textSize="15sp"  />
+        android:textSize="15sp" 
+         android:paddingTop="5dip" />
 
     <TextView
         android:id="@+id/time_frame_date"
-        android:layout_width="match_parent"
+         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:drawableLeft="@drawable/clock_white"
         android:drawablePadding="5dip"
         android:gravity="center_vertical"
         android:text="@string/loading"
         android:textColor="#fff"
-        android:textSize="15sp"  />
+        android:textSize="15sp" 
+         android:paddingTop="5dip" />
 
 
     <TextView
         android:id="@+id/location"
-        android:layout_width="match_parent"
+         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/map_white"
         android:drawablePadding="5dip"
         android:gravity="center_vertical"
         android:text="@string/loading"
         android:textColor="#fff"
-        android:textSize="15sp"/>
+        android:textSize="15sp" 
+         android:paddingTop="5dip"/>
 
      <TextView
         android:id="@+id/notesTitle"

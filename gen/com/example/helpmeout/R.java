@@ -1055,8 +1055,8 @@ containing a value of this type.
         public static final int categoryText=0x7f06005b;
         public static final int checkbox=0x7f06002d;
         public static final int chooser_name=0x7f060081;
-        public static final int chooser_reliability=0x7f060083;
-        public static final int chooser_speed=0x7f060082;
+        public static final int chooser_reliability=0x7f060082;
+        public static final int chooser_speed=0x7f060083;
         public static final int cleaningJobsButton=0x7f06004f;
         public static final int collapseActionView=0x7f06000d;
         public static final int completedButton=0x7f060087;

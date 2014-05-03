@@ -213,8 +213,9 @@ public class SignUp extends ActionBarActivity {
 		 		json.put("password", password.toString());
 		 		json.put("firstName", firstName.toString());
 		 		json.put("lastName", lastName.toString());
-		 		json.put("phone", phoneNumber.toString());
-		 		json.put("birthDate", "12/34/5678");
+		 		Log.i("ACW4","Phone number" + phoneNumber.toString());
+		 		json.put("number", phoneNumber);
+		 		json.put("birthDate", "12/01/1992");
 		 		json.put("gender", "1"); 
 		 		StringEntity se = new StringEntity( json.toString()); 
 		 		se.setContentType(new BasicHeader(HTTP.CONTENT_TYPE, "application/json"));

@@ -62,7 +62,6 @@ public class JobsAvailable extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				loadJobs(getCategoryJobs("other"));
-				notifyIfNoAvialbleJobs();
 				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
@@ -72,7 +71,6 @@ public class JobsAvailable extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				loadJobs(getCategoryJobs("maintenance"));
-				notifyIfNoAvialbleJobs();
 				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
@@ -82,7 +80,6 @@ public class JobsAvailable extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				loadJobs(getCategoryJobs("techSupport"));
-				notifyIfNoAvialbleJobs();
 				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
@@ -92,7 +89,6 @@ public class JobsAvailable extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				loadJobs(getCategoryJobs("rides"));
-				notifyIfNoAvialbleJobs();
 				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
@@ -102,7 +98,6 @@ public class JobsAvailable extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				loadJobs(getCategoryJobs("cleaning"));
-				notifyIfNoAvialbleJobs();
 				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
@@ -112,7 +107,6 @@ public class JobsAvailable extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				loadJobs(getCategoryJobs("groceries"));
-				notifyIfNoAvialbleJobs();
 				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
@@ -122,7 +116,6 @@ public class JobsAvailable extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				loadJobs(getCategoryJobs("laundry"));
-				notifyIfNoAvialbleJobs();
 				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
@@ -132,7 +125,6 @@ public class JobsAvailable extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				loadJobs(getCategoryJobs("food"));
-				notifyIfNoAvialbleJobs();
 				Intent intent = new Intent(mContext, DisplayAvailableJobs.class);
 				startActivity(intent);
 			}
@@ -151,14 +143,7 @@ public class JobsAvailable extends ActionBarActivity {
 
 	}
 	
-	public void notifyIfNoAvialbleJobs(){
-		TextView noJobs = (TextView) findViewById(R.id.noJobs);
-		if(mJobs != null && mJobs.size() > 0){
-			noJobs.setVisibility(View.GONE);
-		} else {
-			noJobs.setVisibility(View.VISIBLE);
-		}
-	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -182,6 +182,13 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 				JobsINeedDoneAdapter adapter = new JobsINeedDoneAdapter(mContext,mJobs);
 				ListView listView = (ListView) findViewById(R.id.myListView);
 				listView.setAdapter(adapter);
+				
+				TextView noJobs = (TextView) findViewById(R.id.noJobs);
+				if(mJobs.size() > 0){
+					noJobs.setVisibility(View.GONE);
+				} else {
+					noJobs.setVisibility(View.VISIBLE);
+				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				Log.i("ACW", "JSON exception. :(" + e);

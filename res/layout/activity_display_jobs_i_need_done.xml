@@ -1,12 +1,25 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2c3e50"
     tools:context="com.example.helpmeout.DisplayJobsINeedDone"
     tools:ignore="MergeRootFrame" >
 
+    
+        <TextView 
+        android:id="@+id/noJobs"
+         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/noJobs"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:visibility="gone"
+    	/>
+        
     <ListView
         android:id="@+id/myListView"
         android:layout_width="match_parent"
@@ -16,4 +29,4 @@
         android:dividerHeight="1px" >
     </ListView>
 
-</RelativeLayout>
+</LinearLayout>

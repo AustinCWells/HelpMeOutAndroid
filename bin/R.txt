@@ -296,8 +296,8 @@ int id categorySpinner 0x7f06005c
 int id categoryText 0x7f06005b
 int id checkbox 0x7f06002d
 int id chooser_name 0x7f060081
-int id chooser_reliability 0x7f060083
-int id chooser_speed 0x7f060082
+int id chooser_reliability 0x7f060082
+int id chooser_speed 0x7f060083
 int id cleaningJobsButton 0x7f06004f
 int id collapseActionView 0x7f06000d
 int id completedButton 0x7f060087

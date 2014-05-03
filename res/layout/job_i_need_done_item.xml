@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:background="#2c3e50"
     android:orientation="vertical" >
-	
+    
+  
 
    
     <TextView
@@ -13,7 +14,8 @@
         android:layout_height="wrap_content"
         android:text="@string/loading"
         android:textColor="#fff"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        />
 
     <TextView
         android:id="@+id/price"
@@ -24,7 +26,8 @@
         android:gravity="center_vertical"
         android:text="@string/loading"
         android:textColor="#fff"
-        android:textSize="15sp" />
+        android:textSize="15sp" 
+         android:paddingTop="5dip"/>
 
     <TextView
         android:id="@+id/location"
@@ -35,7 +38,8 @@
         android:gravity="center_vertical"
         android:text="@string/loading"
         android:textColor="#fff"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+         android:paddingTop="5dip" />
     
      <TextView
         android:id="@+id/helper"
@@ -46,7 +50,8 @@
         android:gravity="center_vertical"
         android:text="@string/loading"
         android:textColor="#fff"
-        android:textSize="15sp" />
+        android:textSize="15sp" 
+         android:paddingTop="5dip"/>
 
     <TextView
         android:id="@+id/chooser_name"
@@ -57,18 +62,10 @@
         android:gravity="center_vertical"
         android:text="@string/loading"
         android:textColor="#fff"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+         android:paddingTop="5dip" />
 
-    <TextView
-        android:id="@+id/chooser_speed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-         android:drawableLeft="@drawable/speed_white"
-        android:text="@string/loading"
-         android:drawablePadding="5dip"
-        android:textColor="#fff"
-        android:textSize="15sp" />
+  
 
     <TextView
         android:id="@+id/chooser_reliability"
@@ -79,7 +76,21 @@
          android:drawablePadding="5dip"
         android:text="@string/loading"
         android:textColor="#fff"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+         android:paddingTop="5dip" />
+        
+        <TextView
+        android:id="@+id/chooser_speed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+         android:drawableLeft="@drawable/speed_white"
+        android:text="@string/loading"
+         android:drawablePadding="5dip"
+        android:textColor="#fff"
+        android:textSize="15sp" 
+         android:paddingTop="5dip"/>
+	
 
     <TextView
         android:id="@+id/contact_number"
@@ -90,7 +101,8 @@
         android:gravity="center_vertical"
         android:text="@string/loading"
         android:textColor="#fff"
-        android:textSize="15sp" />
+        android:textSize="15sp" 
+         android:paddingTop="5dip"/>
     
       <TextView
         android:id="@+id/time_frame_date"
@@ -101,7 +113,8 @@
         android:gravity="center_vertical"
         android:text="@string/loading"
         android:textColor="#fff"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+         android:paddingTop="5dip" />
 	
       <TextView
         android:id="@+id/notesTitle"

@@ -39,10 +39,15 @@ public class DisplayAvailableJobs extends ActionBarActivity {
 		setContentView(R.layout.activity_display_available_jobs);
 		mContext = this; 
 		AvailableJobsAdapter adapter = new AvailableJobsAdapter(mContext, JobsAvailable.mJobs);
-		 
-		ListView listView = (ListView) findViewById(R.id.myListView);
-		 
+		ListView listView = (ListView) findViewById(R.id.myListView); 
 		listView.setAdapter(adapter);
+		
+		TextView noJobs = (TextView) findViewById(R.id.noJobs);
+		if(JobsAvailable.mJobs != null && JobsAvailable.mJobs.size() > 0){
+			noJobs.setVisibility(View.GONE);
+		} else {
+			noJobs.setVisibility(View.VISIBLE);
+		}
 		 
 	}
 
