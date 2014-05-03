@@ -405,8 +405,11 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 			
 			final JobINeedDone job = mAdapterJobs.get(position);
 			
-			priceView.setText("$" + job.price.toString() + ".00");
+			
 			if (job.is_offer_for_help) {
+				v.setBackgroundColor(getResources().getColor(R.color.lightBlue));
+				
+				priceView.setVisibility(View.GONE);
 				helperTitle.setVisibility(View.GONE);
 				shortDescriptionView.setText("OFFER: " + job.short_description);
 				notesTitle.setVisibility(View.GONE);
@@ -416,8 +419,7 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 				chooserSpeedView.setText("Speed: " + job.chooser_speed + "/100");
 				chooserReliabilityView.setVisibility(View.VISIBLE);
 				chooserReliabilityView.setText("Reliability: " + job.chooser_reliability + "/100");
-				contactNumberView.setVisibility(View.VISIBLE);
-				contactNumberView.setText("985-502-1061");
+				contactNumberView.setVisibility(View.GONE);
 				locationView.setVisibility(View.GONE);
 				notesView.setVisibility(View.GONE);
 				timeFrameDateView.setVisibility(View.GONE);
@@ -427,6 +429,10 @@ public class DisplayJobsINeedDone extends ActionBarActivity {
 				declineButton.setVisibility(View.VISIBLE); 
 
 			} else {
+				priceView.setVisibility(View.VISIBLE);
+				priceView.setText("$" + job.price.toString() + ".00");
+				v.setBackgroundColor(getResources().getColor(R.color.blue));
+				
 				helperTitle.setVisibility(View.VISIBLE);
 								shortDescriptionView.setText(job.short_description);
 				notesTitle.setVisibility(View.VISIBLE);

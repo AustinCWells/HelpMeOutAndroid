@@ -131,6 +131,12 @@ public class DisplayJobsImDoing extends ActionBarActivity {
 			try {
 				mJobsImDoing =  new JSONArray(userInformation); 
 				loadJobs(mJobsImDoing);
+				
+				if(mJobs.size() > 0){
+					TextView noJobs = (TextView) findViewById(R.id.noJobs);
+					noJobs.setVisibility(View.GONE);
+				}
+				
 				JobsImDoingAdapter adapter = new JobsImDoingAdapter(mContext, mJobs); 
 				ListView listView = (ListView) findViewById(R.id.myListView); 
 				listView.setAdapter(adapter); 

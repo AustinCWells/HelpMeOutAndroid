@@ -44,7 +44,7 @@
 	    android:id="@+id/signupButton"
 	    android:text="@string/signUpText"
 		android:layout_alignParentBottom="true"
-		
+		android:drawablePadding="15dp"
 		android:layout_width= "wrap_content"
 		android:layout_centerHorizontal="true"
 		android:layout_height= "wrap_content"
@@ -72,6 +72,7 @@
 	    android:layout_below="@+id/password"
 	    android:text="@string/loginText"
 	    android:drawableLeft="@drawable/sign_in"
+	    android:drawablePadding="15dp"
 		android:background="@drawable/button_style"
 		android:fontFamily="sans-serif-thin" />
 	

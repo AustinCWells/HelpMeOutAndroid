@@ -121,5 +121,9 @@
     <string name="speed">Speed</string>
     <string name="title_activity_time_picker">TimePicker</string>
     <string name="title_activity_time">TimeActivity</string>
+    <string name="noJobs">We\'re Sorry, there are no jobs to display. </string>
+    <color name="lightBlue">#3A5C7E</color>
+    <color name="blue">#2c3e50</color>
+    <color name="white">#FFFFFF</color>
 
 </resources>
